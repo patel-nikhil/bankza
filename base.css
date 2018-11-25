@@ -38,12 +38,32 @@ body{
 	transition: background-color 0.2s;
 }
 
+.pin-clear {
+	background-color: white;
+	border: 0;
+	position: absolute;
+	right: 30px;
+	top: 15px;
+}
+
+.pin-clear:active {
+	color: lightgrey;
+}
+
+.pin-clear:focus{
+	outline: 0;
+}
+
 .pin-button:focus{
 	outline: 0;
 }
 
 .pin-button:active {
 	background-color: lightgrey;
+}
+
+.account-entry{
+	position:relative;
 }
 
 .pin-input {
