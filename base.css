@@ -12,7 +12,7 @@ body{
 
 .title {
 	color: white;
-	text-shadow: rgb(0,0,0,0.3) 1px 3px;
+	text-shadow: rgba(0,0,0,0.3) 1px 3px;
 	font-size: 100px;
 }
 
@@ -93,11 +93,10 @@ body{
 
 .menu-button {
 	width: 80%;
-	height: 25%;
+	height: 20%;
 	margin: 5px;
 	background-color: white;
 	border-radius: 10px;
-	transition: background-color 0.2s;
 	font-size: 50px;
 	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
 	color: #0099ff;
