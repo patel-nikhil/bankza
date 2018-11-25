@@ -1,10 +1,10 @@
 let bankUI = $("#bank-ui");
-let state = 0;
+let state = 3;
 
-$(".account-entry-screen").toggle();
-$(".pin-pad-screen").toggle();
-$(".main-menu-screen").toggle();
-$(".menu-buttons-set").toggle();
+// $(".account-entry-screen").toggle();
+// $(".pin-pad-screen").toggle();
+// $(".main-menu-screen").toggle();
+// $(".menu-buttons-set").toggle();
 
 
 function toggleStateDisplay(screen){
