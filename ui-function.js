@@ -59,7 +59,7 @@ $(".deposit").click(function(){
 	}
 });
 
-$(".finish-deposit").click(function(){
+$(".deposit-finish").click(function(){
 	if(state == 4){
 		state = 5;
 		let amount = 50.00;
