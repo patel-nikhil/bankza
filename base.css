@@ -4,7 +4,8 @@ body{
 
 #main-display{
 	height: 600px;
-	background-color: #0099ff;
+	background: linear-gradient(rgba(0, 153, 255, 0.25), rgba(0, 153, 255, 0.25)), url("http://mhalc.org/wp-content/uploads/2013/09/blue-abstract-background.jpg");
+	background-size: cover;
 	border: 2px solid black;
 	padding: 0;
 	overflow: hidden;
@@ -13,7 +14,8 @@ body{
 .title {
 	color: white;
 	text-shadow: rgba(0,0,0,0.3) 1px 3px;
-	font-size: 100px;
+	font-size: 120px;
+	font-family: 'Lobster', sans-serif !important;
 }
 
 .sub-title {
@@ -134,4 +136,31 @@ body{
 	color: white;
 	text-shadow: rgb(0,0,0,0.3) 1px 3px;
 	font-size: 60px;
+}
+
+.withdraw-amount-button{
+	width: 40%;
+	margin: 15px;
+	font-size: 40px;
+	text-align: center;
+	padding-left: 0;
+}
+
+.withdraw-screen{
+
+}
+
+.withdraw-section{
+	border-right: 2px solid white;
+}
+
+.custom-amount-button{
+	font-size: 30px;
+	text-align: center;
+	padding-left: 0;
+}
+
+.withdraw-title {
+	font-size: 60px;
+	text-shadow: rgba(0,0,0,0.3) 1px 3px;
 }
