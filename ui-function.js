@@ -6,6 +6,7 @@ $(".pin-pad-screen").toggle();
 $(".main-menu-screen").toggle();
 $(".menu-buttons-set").toggle();
 $(".deposit-screen").toggle();
+$(".deposit-finish-screen").toggle();
 
 
 function toggleStateDisplay(screen){
@@ -54,6 +55,20 @@ $(".deposit").click(function(){
 		toggleStateDisplay($(".menu-buttons-set"));
 		setTimeout(function(){
 			toggleStateDisplay($(".deposit-screen"));
+		}, 1000);
+	}
+});
+
+$(".finish-deposit").click(function(){
+	if(state == 4){
+		state = 5;
+		let amount = 50.00;
+		let balance = 51.00;
+		document.getElementById("deposit-amt").innerHTML = "Successfully deposited $" + amount + " to your account.";
+		document.getElementById("deposit-balance").innerHTML = "Your new balance is $" + balance;
+		toggleStateDisplay($(".deposit-screen"));
+		setTimeout(function(){
+			toggleStateDisplay($(".deposit-finish-screen"));
 		}, 1000);
 	}
 });
