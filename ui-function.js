@@ -5,6 +5,7 @@ $(".account-entry-screen").toggle();
 $(".pin-pad-screen").toggle();
 $(".main-menu-screen").toggle();
 $(".menu-buttons-set").toggle();
+$(".deposit-screen").toggle();
 
 
 function toggleStateDisplay(screen){
@@ -45,6 +46,17 @@ $(".pin-enter").click(function(){
 	}
 });
 
+
+$(".deposit").click(function(){
+	if(state == 3){
+		state = 4;
+		toggleStateDisplay($(".main-menu-screen"));
+		toggleStateDisplay($(".menu-buttons-set"));
+		setTimeout(function(){
+			toggleStateDisplay($(".deposit-screen"));
+		}, 1000);
+	}
+});
 
 
 let pinNumbers = $(".pin-num");
