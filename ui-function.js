@@ -5,6 +5,7 @@ $(".account-entry-screen").toggle();
 $(".pin-pad-screen").toggle();
 $(".main-menu-screen").toggle();
 $(".menu-buttons-set").toggle();
+$(".start-deposit-screen").toggle();
 $(".deposit-screen").toggle();
 $(".deposit-finish-screen").toggle();
 
@@ -53,6 +54,30 @@ $(".deposit").click(function(){
 		state = 4;
 		toggleStateDisplay($(".main-menu-screen"));
 		toggleStateDisplay($(".menu-buttons-set"));
+		document.querySelectorAll(".deposit-account")[0].innerText = "Chequings Balance $" + activeAccount.balance.chequing;
+		document.querySelectorAll(".deposit-account")[1].innerText = "Savings Balance $" + activeAccount.balance.savings;
+		setTimeout(function(){
+			toggleStateDisplay($(".start-deposit-screen"));
+		}, 1000);
+	}
+});
+
+$(".deposit-back").click(function(){
+	if(state == 4){
+		state = 3;
+		toggleStateDisplay($(".start-deposit-screen"));		
+		setTimeout(function(){
+			toggleStateDisplay($(".main-menu-screen"));
+			toggleStateDisplay($(".menu-buttons-set"));
+		}, 1000);
+	}
+});
+
+$(".deposit-account").click(function(event, btn){
+	if(state == 4){
+		state = 5;
+		activeAccountType = event.target.value;
+		toggleStateDisplay($(".start-deposit-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".deposit-screen"));
 		}, 1000);
@@ -60,10 +85,10 @@ $(".deposit").click(function(){
 });
 
 $(".deposit-finish").click(function(){
-	if(state == 4){
-		state = 5;
-		let amount = 50.00;
-		let balance = 51.00;
+	if(state == 5){
+		state = 6;
+		let amount = depositAmount(activeAccountType);
+		let balance = updateAccountBalance(activeAccountType);
 		document.getElementById("deposit-amt").innerHTML = "Successfully deposited $" + amount + " to your account.";
 		document.getElementById("deposit-balance").innerHTML = "Your new balance is $" + balance;
 		toggleStateDisplay($(".deposit-screen"));

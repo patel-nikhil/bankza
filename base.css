@@ -113,6 +113,14 @@ body{
 	margin-top: 40%;
 }
 
+.deposit-back{
+	color: white;
+	font-size: 50px;
+	position: absolute;
+	top: 60px;
+	left: 210px;
+}
+
 .menu-button:active{
 	box-shadow: 5px 5px 10px rgb(0,0,0,0);
 	transform: translate(2px, 5px);
@@ -151,6 +159,14 @@ body{
 	height: 200px;
 	margin-bottom: 5%;
 	box-shadow: 0px 5px 5px rgb(0,0,0,0.3);
+}
+
+.deposit-account {
+	width: 300px;
+	font-size: 30px;
+	text-align: center;
+	padding: 20px;
+	margin: 150px 50px 50px;
 }
 
 .finish-deposit:focus {
@@ -220,6 +236,7 @@ body{
 
 .grid-container {
 	display: grid;
+	margin-top: 100px;
 	grid-template-columns: 35% 25% 40%;
 	grid-template-rows: auto auto;
   }
@@ -255,4 +272,11 @@ body{
 
 #deposit-amt {
 	padding-left: 50px;
+}
+
+#deposit-input {
+	position: absolute;
+	text-align: center;
+	margin-top: 10px;
+	left: 45%;
 }
