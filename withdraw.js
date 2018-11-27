@@ -66,6 +66,10 @@ var withdraw_bill_count = {
 	hundred: 0
 }
 
+function billTotal(bills){
+	return bills.five * 5 + bills.ten * 10 + bills.twenty * 20 + bills.fifty * 50 + bills.hundred * 100;
+}
+
 function populateAccounts(){
 	var acct_dropdown = document.querySelector(".account-selection");
 	acct_dropdown.appendChild(new Option("Chequing  $" + activeAccount.balance.chequing, 1));
@@ -279,56 +283,56 @@ function hasBills (bills){
  * Updates withdraw_bill_count
  *
  */
-function updateBills(amount, denom, value, change){
-	if (billCount[denom] < value) return false; 										/* Not enough bills, don't allow to increase */
-	if (value > Math.floor(amount / Object.values(billValue)[denom])) return false; 	/* Goes higher than withdrawal amount */
+// function updateBills(amount, denom, value, change){
+// 	if (billCount[denom] < value) return false; 										/* Not enough bills, don't allow to increase */
+// 	if (value > Math.floor(amount / Object.values(billValue)[denom])) return false; 	/* Goes higher than withdrawal amount */
 	
-	var new_amts = [0, 0, 0, 0, 0];
-	for (i = 0; i < 5; i++) new_amts[i] = Object.values(withdraw_bill_count)[i];
+// 	var new_amts = [0, 0, 0, 0, 0];
+// 	for (i = 0; i < 5; i++) new_amts[i] = Object.values(withdraw_bill_count)[i];
 	
-	console.log("Passed initial checks");
+// 	console.log("Passed initial checks");
 	
-	/*if (change == "decrease"){*/
-	if (change == "decrease"){
-		new_amts[denom] -= value;
-	} else if (change == "increase"){
-		new_amts[denom] += value;
-	}
+// 	/*if (change == "decrease"){*/
+// 	if (change == "decrease"){
+// 		new_amts[denom] -= value;
+// 	} else if (change == "increase"){
+// 		new_amts[denom] += value;
+// 	}
 	
-	/* Try and reallocate all other bill values */
-	/* amt_change = Object.values(billValue)[denom] */
-	amt_change = Object.values(billValue)[denom] * value;
-	console.log(amt_change);
-	for (i = 4; i >= 0; i--){
-		if (i == denom) continue;
-		if (document.getElementById(Object.values(billName)[i]).disabled == true) continue;	/* Allow user to 'lock in' a number for bill denomination */
-		if (Object.values(billCount)[i] <= Object.values(withdraw_bill_count)[i]) continue;	/* Used up all of these bills so go to next highest denomination */
-		var denomAmt = Math.floor(amt_change / Object.values(billValue)[i]);
-		if (denomAmt == 0) continue;
+// 	/* Try and reallocate all other bill values */
+// 	/* amt_change = Object.values(billValue)[denom] */
+// 	amt_change = Object.values(billValue)[denom] * value;
+// 	console.log(amt_change);
+// 	for (i = 4; i >= 0; i--){
+// 		if (i == denom) continue;
+// 		if (document.getElementById(Object.values(billName)[i]).disabled == true) continue;	/* Allow user to 'lock in' a number for bill denomination */
+// 		if (Object.values(billCount)[i] <= Object.values(withdraw_bill_count)[i]) continue;	/* Used up all of these bills so go to next highest denomination */
+// 		var denomAmt = Math.floor(amt_change / Object.values(billValue)[i]);
+// 		if (denomAmt == 0) continue;
 		
-		/* Use as many of these bill types as you can */
-		if (denomAmt > Object.values(billCount)[i] - Object.values(withdraw_bill_count)[i]){
-			denomAmt = Object.values(billCount)[i] - Object.values(withdraw_bill_count)[i];
-		}
+// 		/* Use as many of these bill types as you can */
+// 		if (denomAmt > Object.values(billCount)[i] - Object.values(withdraw_bill_count)[i]){
+// 			denomAmt = Object.values(billCount)[i] - Object.values(withdraw_bill_count)[i];
+// 		}
 		
-		if (change == "decrease"){
-			new_amts[i] += denomAmt;
-		} else if (change == "increase"){
-			if (new_amts[i] - denomAmt < 0) continue; 
-			new_amts[i] -= denomAmt;
-		}
-		/*new_amts[i] = denomAmt;*/
-		amt_change -= denomAmt * Object.values(billValue)[i];								/* Update selection to reflect to bill count */
-		console.log("Reallocated");
-		console.log(Object.values(billName)[i]);
-		console.log(new_amts[i]);
-		if (amt_change == 0) break;
-	}
-	if (amt_change != 0) return false;
-	for (i = 0; i < 5; i++) withdraw_bill_count[Object.values(billName)[i]] = new_amts[i];
-	/*withdraw_bill_count[Object.values(billName)[denom]] -= 1;*/
-	return true;
-}
+// 		if (change == "decrease"){
+// 			new_amts[i] += denomAmt;
+// 		} else if (change == "increase"){
+// 			if (new_amts[i] - denomAmt < 0) continue; 
+// 			new_amts[i] -= denomAmt;
+// 		}
+// 		/*new_amts[i] = denomAmt;*/
+// 		amt_change -= denomAmt * Object.values(billValue)[i];								/* Update selection to reflect to bill count */
+// 		console.log("Reallocated");
+// 		console.log(Object.values(billName)[i]);
+// 		console.log(new_amts[i]);
+// 		if (amt_change == 0) break;
+// 	}
+// 	if (amt_change != 0) return false;
+// 	for (i = 0; i < 5; i++) withdraw_bill_count[Object.values(billName)[i]] = new_amts[i];
+// 	/*withdraw_bill_count[Object.values(billName)[denom]] -= 1;*/
+// 	return true;
+// }
 
 /* Decreases account balance by appropriate amount */
 function doWithdraw(account, amount) {
@@ -346,6 +350,7 @@ function removeBills(bills){
 }
 
 let withdraw_amount = 100.00;
+let current_withdraw_amount = 100.00;
 activeAccount = account1;
 // document.getElementById("balance").value = "$" + account1.balance;
 // beginWithdraw(account1, 50.00);

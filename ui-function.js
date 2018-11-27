@@ -62,18 +62,24 @@ $(".btn-start-withdraw").click(function(){
 });
 
 $(".withdraw-amount-button").click(function(){
-	if(state == 6){
+	if(state == 6 && document.querySelector(".account-selection").value != "Select Account"){
 		state = 7;
 		withdraw_amount = this.innerHTML.substr(1);
-		document.querySelector(".withdraw-amount").innerText = "$" + withdraw_amount;
+		current_withdraw_amount = this.innerHTML.substr(1);
+		updateWithdrawAmount();
 		var bills = setDefaultBills(withdraw_amount);
+
+		for (i = 0; i < 5; i++){
+			if (bills[Object.values(billName)[i]] == null) withdraw_bill_count[Object.values(billName)[i]] = 0;
+			else withdraw_bill_count[Object.values(billName)[i]] = bills[Object.values(billName)[i]];
+		}
 
 		for (i = 0; i < 5; i++){
 			let amt = bills[Object.values(billName)[i]];
 			if (amt == null) document.querySelectorAll(".bill-modify")[i].children[2].innerText = 0;
 			else document.querySelectorAll(".bill-modify")[i].children[2].innerText = amt;
 		}
-
+		update_withdraw_buttons();
 		toggleStateDisplay($(".bill-select-screen"));
 		toggleStateDisplay($(".withdraw-amount-screen"));
 		setTimeout(function(){
@@ -92,7 +98,6 @@ $(".custom-amount-button").click(function(){
 		}, 1000);
 	}
 });
-
 
 let pinNumbers = $(".pin-num");
 let entry = "";
