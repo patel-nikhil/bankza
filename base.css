@@ -38,6 +38,19 @@ body{
 	border: 1px solid grey;
 	border-radius: 10px;
 	transition: background-color 0.2s;
+	font-size: 25px;
+}
+
+.back-button{
+	color: white;
+	font-size: 50px;
+	position: absolute;
+	top: -40px;
+	left: -300px;
+}
+
+.back-button:active {
+	color: lightgrey;
 }
 
 .pin-clear {
@@ -74,7 +87,7 @@ body{
 	border: none;
 	padding: 10px;
 	border-bottom: 1px solid lightgrey;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	font-size: 40px;
 	letter-spacing: 15px;
 	color: #333333;
@@ -163,4 +176,57 @@ body{
 .withdraw-title {
 	font-size: 60px;
 	text-shadow: rgba(0,0,0,0.3) 1px 3px;
+}
+
+.account-selection {
+	appearance: none;
+	padding: 20px;
+	width: 82%;
+	padding: 10%;
+	border: 0;
+	box-sizing: border-box;
+	height: 10%;
+	font-size: 20px;
+	outline: 0;
+}
+
+.bill-modify {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 10px;
+}
+
+.modify-button {
+	width: 65px;
+	height: 65px;
+	background-color: white;
+	border-radius: 10px;
+	font-size: 20px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+}
+
+.modify-button:active{
+	box-shadow: 5px 5px 10px rgb(0,0,0,0);
+	transform: translate(2px, 5px);
+	background-color: #e6e6e6;
+	border: none;
+}
+
+.modify-button:focus {
+	outline: 0;
+}
+
+.bill-text {
+	font-size: 40px;
+	color: white;
+	margin: 0;
+}
+
+.bill-img{
+	width: 45%;
+	height: 100%;
+	opacity: : linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
 }
