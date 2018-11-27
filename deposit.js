@@ -29,13 +29,13 @@ var account1 = {
 activeAccount = account1;
 
 function depositAmount(acct_type){
-	var deposit = parseFloat(document.querySelector("#deposit-input").value);
-  if (acct_type == 2){
+	var deposit = parseFloat(document.querySelector(".input-deposit").value);
+	if (acct_type == 2){
 		activeAccount.balance.savings += deposit;
 	} else {
 		activeAccount.balance.chequing += deposit;
 	}
-  return deposit;
+	return deposit;
 }
 
 function updateAccountBalance(acct_type){
