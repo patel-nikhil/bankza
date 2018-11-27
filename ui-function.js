@@ -90,8 +90,8 @@ $(".deposit-finish").click(function(){
 		state = 6;
 		let amount = depositAmount(activeAccountType);
 		let balance = updateAccountBalance(activeAccountType);
-		document.getElementById("deposit-amt").innerHTML = "Successfully deposited $" + amount + " to your account.";
-		document.getElementById("deposit-balance").innerHTML = "Your new balance is $" + balance;
+		$("#deposit-amt").html("Successfully deposited $" + amount + " to your account.");
+		$("#deposit-balance").html("Your new balance is $" + balance);
 		toggleStateDisplay($(".deposit-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".deposit-finish-screen"));
