@@ -182,7 +182,6 @@ body{
 	appearance: none;
 	padding: 20px;
 	width: 82%;
-	padding: 10%;
 	border: 0;
 	box-sizing: border-box;
 	height: 10%;
@@ -214,6 +213,10 @@ body{
 	border: none;
 }
 
+.modify-button:disabled {
+	color: lightgray;
+}
+
 .modify-button:focus {
 	outline: 0;
 }
@@ -227,6 +230,6 @@ body{
 .bill-img{
 	width: 45%;
 	height: 100%;
-	opacity: : linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+	opacity: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
 }
