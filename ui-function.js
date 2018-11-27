@@ -19,7 +19,7 @@ bankUI.click(function(){
 		state = 1;
 		toggleStateDisplay($(".start-screen"));
 		setTimeout(function(){
-			toggleStateDisplay($(".account-entry-screen"));	
+			toggleStateDisplay($(".account-entry-screen"));
 		}, 1000);
 
 	}
@@ -32,7 +32,7 @@ $(".account-enter").click(function(){
 		entry = "";
 		toggleStateDisplay($(".account-entry-screen"));
 		setTimeout(function(){
-			toggleStateDisplay($(".pin-pad-screen"));	
+			toggleStateDisplay($(".pin-pad-screen"));
 		}, 1000);
 	}
 });
@@ -65,7 +65,8 @@ $(".deposit").click(function(){
 $(".deposit-back").click(function(){
 	if(state == 4){
 		state = 3;
-		toggleStateDisplay($(".start-deposit-screen"));		
+		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.chequing});
+		toggleStateDisplay($(".start-deposit-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
 			toggleStateDisplay($(".menu-buttons-set"));
@@ -98,6 +99,17 @@ $(".deposit-finish").click(function(){
 	}
 });
 
+$(".deposit-continue").click(function(){
+	if(state == 6){
+		state = 3;
+
+		toggleStateDisplay($(".deposit-finish-screen"));
+		setTimeout(function(){
+			toggleStateDisplay($(".main-menu-screen"));
+			toggleStateDisplay($(".menu-buttons-set"));
+		}, 1000);
+	}
+});
 
 let pinNumbers = $(".pin-num");
 let entry = "";
@@ -106,7 +118,7 @@ pinNumbers.each(function(index, btn){
 	$(btn).click(function(){
 		if($(".pin-input").val().length < 4){
 			entry += (index + 1) % 10
-			$(".pin-input").val(entry);	
+			$(".pin-input").val(entry);
 		} else if ($(".pin-input").val().length < 7 && state == 1){
 			entry += (index + 1) % 10
 			$(".pin-input").val(entry);
@@ -116,7 +128,7 @@ pinNumbers.each(function(index, btn){
 
 
 $(".pin-delete").click(function(){
-		
+
 		let numArray = entry.split("");
 		numArray.pop();
 		entry = numArray.join("");
@@ -125,7 +137,7 @@ $(".pin-delete").click(function(){
 });
 
 $(".pin-clear").click(function(){
-		
+
 	entry = "";
 	$(".pin-input").val(entry);
 });

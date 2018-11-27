@@ -29,7 +29,7 @@ var account1 = {
 activeAccount = account1;
 
 function depositAmount(acct_type){
-	var deposit = parseFloat(document.querySelector("#deposit-input").value);
+	var deposit = parseFloat($("#deposit-input").val());
   if (acct_type == 2){
 		activeAccount.balance.savings += deposit;
 	} else {
