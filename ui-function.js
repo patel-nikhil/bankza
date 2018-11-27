@@ -9,6 +9,9 @@ $(".withdraw-screen").toggle();
 $(".bill-select-screen").toggle();
 $(".withdraw-amount-screen").toggle();
 $(".withdraw-finish-screen").toggle();
+$(".start-deposit-screen").toggle();
+$(".deposit-screen").toggle();
+$(".deposit-finish-screen").toggle();
 
 
 function toggleStateDisplay(screen){
@@ -52,7 +55,7 @@ $(".pin-enter").click(function(){
 
 $(".btn-start-withdraw").click(function(){
 	if(state == 3){
-		state = 6;
+		state = 7;
 		toggleStateDisplay($(".withdraw-screen"));
 		populateAccounts();
 		setTimeout(function(){
@@ -63,8 +66,8 @@ $(".btn-start-withdraw").click(function(){
 });
 
 $(".withdraw-amount-button").click(function(){
-	if(state == 6 && document.querySelector(".account-selection").value != "Select Account"){
-		state = 7;
+	if(state == 7 && document.querySelector(".account-selection").value != "Select Account"){
+		state = 8;
 		withdraw_amount = this.innerHTML.substr(1);
 		current_withdraw_amount = this.innerHTML.substr(1);
 		updateWithdrawAmount();
@@ -90,8 +93,8 @@ $(".withdraw-amount-button").click(function(){
 });
 
 $(".custom-amount-button").click(function(){
-	if(state == 6){
-		state = 7;
+	if(state == 7){
+		state = 8;
 		toggleStateDisplay($(".bill-select-screen"));
 		toggleStateDisplay($(".withdraw-amount-screen"));
 		setTimeout(function(){
@@ -101,8 +104,8 @@ $(".custom-amount-button").click(function(){
 });
 
 $(".withdraw-complete").click(function(){
-	if(state == 7){
-		state = 8;
+	if(state == 8){
+		state = 9;
 		doWithdraw(activeAccount, activeAccountType, current_withdraw_amount);
 		removeBills(withdraw_bill_count);
 		var balance = 0;
@@ -114,6 +117,79 @@ $(".withdraw-complete").click(function(){
 		setTimeout(function(){
 			toggleStateDisplay($(".bill-select-screen"));
 			toggleStateDisplay($(".withdraw-amount-screen"));
+		}, 1000);
+	}
+});
+
+$(".withdraw-continue").click(function(){
+	if(state == 9){
+		state = 3;
+		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.chequing});
+		toggleStateDisplay($(".withdraw-finish-screen"));
+		setTimeout(function(){
+			toggleStateDisplay($(".main-menu-screen"));
+			toggleStateDisplay($(".menu-buttons-set"));
+		}, 1000);
+	}
+});
+
+$(".deposit").click(function(){
+	if(state == 3){
+		state = 4;
+		toggleStateDisplay($(".main-menu-screen"));
+		toggleStateDisplay($(".menu-buttons-set"));
+		document.querySelectorAll(".deposit-account")[0].innerText = "Chequings Balance $" + activeAccount.balance.chequing;
+		document.querySelectorAll(".deposit-account")[1].innerText = "Savings Balance $" + activeAccount.balance.savings;
+		setTimeout(function(){
+			toggleStateDisplay($(".start-deposit-screen"));
+		}, 1000);
+	}
+});
+
+$(".deposit-back").click(function(){
+	if(state == 4){
+		state = 3;
+		toggleStateDisplay($(".start-deposit-screen"));		
+		setTimeout(function(){
+			toggleStateDisplay($(".main-menu-screen"));
+			toggleStateDisplay($(".menu-buttons-set"));
+		}, 1000);
+	}
+});
+
+$(".deposit-account").click(function(event, btn){
+	if(state == 4){
+		state = 5;
+		activeAccountType = event.target.value;
+		toggleStateDisplay($(".start-deposit-screen"));
+		setTimeout(function(){
+			toggleStateDisplay($(".deposit-screen"));
+		}, 1000);
+	}
+});
+
+$(".deposit-finish").click(function(){
+	if(state == 5){
+		state = 6;
+		let amount = depositAmount(activeAccountType);
+		let balance = updateAccountBalance(activeAccountType);
+		document.getElementById("deposit-amt").innerHTML = "Successfully deposited $" + amount + " to your account.";
+		document.getElementById("deposit-balance").innerHTML = "Your new balance is $" + balance;
+		toggleStateDisplay($(".deposit-screen"));
+		setTimeout(function(){
+			toggleStateDisplay($(".deposit-finish-screen"));
+		}, 1000);
+	}
+});
+
+$(".deposit-continue").click(function(){
+	if(state == 6){
+		state = 3;
+		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.chequing});
+		toggleStateDisplay($(".deposit-finish-screen"));
+		setTimeout(function(){
+			toggleStateDisplay($(".main-menu-screen"));
+			toggleStateDisplay($(".menu-buttons-set"));
 		}, 1000);
 	}
 });
