@@ -21,6 +21,7 @@
  */
 
 var activeAccount;
+var activeAccountType;
 
 /* First dummy account */
 var account1 = {
@@ -80,6 +81,7 @@ $(".account-selection").on(
 	{"change": function(){
 		updateAvailableAmounts(document.querySelector(".account-selection").value);
 		updateCurrentBalance(document.querySelector(".account-selection").value);
+		activeAccountType = document.querySelector(".account-selection").value;
 	}
 });
 
@@ -335,8 +337,9 @@ function hasBills (bills){
 // }
 
 /* Decreases account balance by appropriate amount */
-function doWithdraw(account, amount) {
-	account.balance -= amount;
+function doWithdraw(account, acct_type, amount) {
+	if (acct_type == 1) account.balance.chequing -= amount;
+	else account.balance.savings -= amount;
 	console.log("Withdrew amount successfully");
 }
 

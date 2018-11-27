@@ -8,6 +8,7 @@ $(".menu-buttons-set").toggle();
 $(".withdraw-screen").toggle();
 $(".bill-select-screen").toggle();
 $(".withdraw-amount-screen").toggle();
+$(".withdraw-finish-screen").toggle();
 
 
 function toggleStateDisplay(screen){
@@ -95,6 +96,24 @@ $(".custom-amount-button").click(function(){
 		toggleStateDisplay($(".withdraw-amount-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".withdraw-screen"));
+		}, 1000);
+	}
+});
+
+$(".withdraw-complete").click(function(){
+	if(state == 7){
+		state = 8;
+		doWithdraw(activeAccount, activeAccountType, current_withdraw_amount);
+		removeBills(withdraw_bill_count);
+		var balance = 0;
+		if (activeAccountType == 1) balance = activeAccount.balance.chequing;
+		else balance = activeAccount.balance.savings;
+		document.getElementById("withdraw-amt").innerHTML = "Successfully withdrew $" + current_withdraw_amount + " from your account.";
+		document.getElementById("withdraw-balance").innerHTML = "Your new balance is $" + balance + ". Please collect your cash below";
+		toggleStateDisplay($(".withdraw-finish-screen"));
+		setTimeout(function(){
+			toggleStateDisplay($(".bill-select-screen"));
+			toggleStateDisplay($(".withdraw-amount-screen"));
 		}, 1000);
 	}
 });

@@ -168,7 +168,18 @@
 				</div>
 				<button class="menu-button withdraw-complete"><i class="fas fa-check"></i> Withdraw</button>
 			</div>
-
+			<div class="col-12 align-self-start withdraw-finish-screen text-white text-center">
+				<h1 class="title-light" id="withdraw-amt"></h1>
+				<h1 class="sub-title-light" id="withdraw-balance"></h1>
+				<div class="withdraw-prompt text-center">
+					<img class="withdraw-image" src="collect.jpg">
+					<h2 class="sub-title-light">Do you wish to make another transaction?</h2>
+				</div>
+				<div class="grid-container" style="display: grid; vertical-align: bottom">
+					<button class="withdraw-continue btn-info" style="grid-column: 1; grid-row: 2"><i class="fas fa-redo-alt"></i> Yes, continue</button>
+					<button class="withdraw-exit btn-danger" style="grid-column: 3; grid-row: 1"><i class="fas fa-sign-out-alt"></i> Finish</button>
+					<button class="withdraw-exit btn-secondary" style="grid-column: 3; grid-row: 2"><i class="fas fa-file-invoice-dollar"></i> Finish, print receipt</button>
+				</div>
 		</div>
 	</div>
 </body>

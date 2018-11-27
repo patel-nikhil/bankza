@@ -233,3 +233,70 @@ body{
 	opacity: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
 }
+
+.withdraw-continue {
+	border: 0;
+	/* width: 50%;
+	height: 20%; */
+	margin: 5px;
+	margin-left: 50px;
+	padding: 10px;
+	background-color: white;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 25px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: left;
+}
+
+.withdraw-exit {
+	border: 0;
+	/* width: 50%;
+	height: 20%; */
+	margin: 5px;
+	margin-right: 50px;
+	padding: 10px;
+	background-color: white;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 25px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: left;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 35% 25% 40%;
+	grid-template-rows: auto auto;
+ }
+
+.title-light {
+	margin-top: 50px;
+	text-shadow: rgb(0,0,0,0.3) 1px 3px;
+}
+
+
+ .withdraw-finish {
+	width: 70%;
+	height: 25%;
+	margin: 5px;
+	background-color: white;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 50px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: center;
+	padding-left: 7%;
+}
+
+.withdraw-finish-screen {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#withdraw-amt {
+	padding-left: 50px;
+}
