@@ -1,0 +1,444 @@
+body{
+	font-family: 'Roboto', sans-serif !important;
+}
+
+#main-display{
+	height: 600px;
+	background: linear-gradient(rgba(0, 153, 255, 0.25), rgba(0, 153, 255, 0.25)), url("http://mhalc.org/wp-content/uploads/2013/09/blue-abstract-background.jpg");
+	background-size: cover;
+	border: 2px solid black;
+	padding: 0;
+	overflow: hidden;
+}
+
+.title {
+	color: white;
+	text-shadow: rgba(0,0,0,0.3) 1px 3px;
+	font-size: 120px;
+	font-family: 'Lobster', sans-serif !important;
+}
+
+.sub-title {
+	color: #003399;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.sub-title-light{
+	color: white;
+	font-size: 30px;
+	margin-top: 20px;
+}
+
+.pin-button {
+	width: 80px;
+	height: 60px;
+	margin: 5px;
+	background-color: white;
+	border: 1px solid grey;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 25px;
+}
+
+.back-button{
+	color: white;
+	font-size: 50px;
+	position: absolute;
+	top: -40px;
+	left: -300px;
+}
+
+.back-button:active {
+	color: lightgrey;
+}
+
+.pin-clear {
+	background-color: white;
+	border: 0;
+	position: absolute;
+	right: 30px;
+	top: 15px;
+}
+
+.pin-clear:active {
+	color: lightgrey;
+}
+
+.pin-clear:focus{
+	outline: 0;
+}
+
+.pin-button:focus{
+	outline: 0;
+}
+
+.pin-button:active {
+	background-color: lightgrey;
+}
+
+.account-entry{
+	position:relative;
+}
+
+.pin-input {
+	width: 350px;
+	height: 50px;
+	border: none;
+	padding: 10px;
+	border-bottom: 1px solid lightgrey;
+	margin-bottom: 10px;
+	font-size: 40px;
+	letter-spacing: 15px;
+	color: #333333;
+}
+
+.card{
+	box-shadow: 0px 10px 10px rgb(0,0,0,0.3);
+}
+
+
+.main-menu-screen{
+	background: linear-gradient(rgba(0, 153, 255, 0.55), rgba(0, 153, 255, 0.55)), url("side-image.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	box-shadow: 5px 0 10px rgb(0,0,0,0.3);
+}
+
+
+.menu-button {
+	width: 80%;
+	height: 20%;
+	margin: 5px;
+	background-color: white;
+	border-radius: 10px;
+	font-size: 50px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: left;
+	padding-left: 7%;
+}
+
+.bankza-footer{
+	margin-top: 40%;
+}
+
+.menu-button:active{
+	box-shadow: 5px 5px 10px rgb(0,0,0,0);
+	transform: translate(2px, 5px);
+	background-color: #e6e6e6;
+	border: none;
+}
+
+.menu-button:focus {
+	outline: 0;
+}
+
+.menu-buttons-set{
+	display: flex; 
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.current-balance {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.balance-title {
+	color: white;
+	text-shadow: rgb(0,0,0,0.3) 1px 3px;
+	font-size: 60px;
+}
+
+.withdraw-amount-button{
+	width: 40%;
+	margin: 15px;
+	font-size: 40px;
+	text-align: center;
+	padding-left: 0;
+}
+
+.withdraw-screen{
+
+}
+
+.withdraw-section{
+	border-right: 2px solid white;
+}
+
+.custom-amount-button{
+	font-size: 30px;
+	text-align: center;
+	padding-left: 0;
+}
+
+.withdraw-title {
+	font-size: 60px;
+	text-shadow: rgba(0,0,0,0.3) 1px 3px;
+}
+
+.account-selection {
+	appearance: none;
+	padding: 20px;
+	width: 82%;
+	border: 0;
+	box-sizing: border-box;
+	height: 10%;
+	font-size: 20px;
+	outline: 0;
+}
+
+.bill-modify {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 10px;
+}
+
+.modify-button {
+	width: 65px;
+	height: 65px;
+	background-color: white;
+	border-radius: 10px;
+	font-size: 20px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+}
+
+.modify-button:active{
+	box-shadow: 5px 5px 10px rgb(0,0,0,0);
+	transform: translate(2px, 5px);
+	background-color: #e6e6e6;
+	border: none;
+}
+
+.modify-button:disabled {
+	color: lightgray;
+}
+
+.modify-button:focus {
+	outline: 0;
+}
+
+.bill-text {
+	font-size: 40px;
+	color: white;
+	margin: 0;
+}
+
+.bill-img{
+	width: 45%;
+	height: 100%;
+	opacity: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+}
+
+.withdraw-continue {
+	border: 0;
+	/* width: 50%;
+	height: 20%; */
+	margin: 5px;
+	margin-left: 50px;
+	padding: 10px;
+	background-color: white;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 25px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: left;
+}
+
+.withdraw-exit {
+	border: 0;
+	/* width: 50%;
+	height: 20%; */
+	margin: 5px;
+	margin-right: 50px;
+	padding: 10px;
+	background-color: white;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 25px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: left;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 35% 25% 40%;
+	grid-template-rows: auto auto;
+ }
+
+.title-light {
+	margin-top: 50px;
+	text-shadow: rgb(0,0,0,0.3) 1px 3px;
+}
+
+
+ .withdraw-finish {
+	width: 70%;
+	height: 25%;
+	margin: 5px;
+	background-color: white;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 50px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: center;
+	padding-left: 7%;
+}
+
+.withdraw-finish-screen {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#withdraw-amt {
+	padding-left: 50px;
+}
+
+/*
+      /////////////////////////////////////////////////// NEW STUFF //////////////////////////////////////////////
+ */
+
+.deposit-prompt {
+	margin-top:10%;
+	margin-bottom: 5%;
+}
+
+.deposit-image {
+	width: 300px;
+	height: 200px;
+	margin-bottom: 5%;
+	box-shadow: 0px 5px 5px rgb(0,0,0,0.3);
+}
+
+.finish-deposit:focus {
+	outline: 0;
+}
+
+.finish-deposit-set{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.finish-deposit:active{
+	/* box-shadow: 5px 5px 10px rgb(0,0,0,0); */
+	transform: translate(2px, 5px);
+	background-color: #e6e6e6;
+	border: none;
+}
+
+.finish-deposit {
+	border: 0;
+	width: 70%;
+	height: 25%;
+	margin: 5px;
+	background-color: white;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 50px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: center;
+	padding-left: 7%;
+}
+
+.deposit-continue {
+	border: 0;
+	/* width: 50%;
+	height: 20%; */
+	margin: 5px;
+	margin-left: 50px;
+	padding: 10px;
+	background-color: white;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 25px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: left;
+}
+
+.deposit-exit {
+	border: 0;
+	/* width: 50%;
+	height: 20%; */
+	margin: 5px;
+	margin-right: 50px;
+	padding: 10px;
+	background-color: white;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 25px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: left;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 35% 25% 40%;
+	grid-template-rows: auto auto;
+}
+
+.deposit2 {
+	margin-left:20px;
+}
+
+.title-light {
+	margin-top: 50px;
+	text-shadow: rgb(0,0,0,0.3) 1px 3px;
+}
+
+
+.deposit-finish {
+	width: 70%;
+	height: 25%;
+	margin: 5px;
+	background-color: white;
+	border-radius: 10px;
+	transition: background-color 0.2s;
+	font-size: 50px;
+	box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+	color: #0099ff;
+	text-align: center;
+	padding-left: 7%;
+}
+
+.deposit-finish-screen {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#deposit-amt {
+	padding-left: 50px;
+}
+
+/*
+Karnvir's stuff
+ */
+.user-actions {
+	color: black;
+	background-color: lightcyan;
+	outline: 1px solid white;
+	font-size: 20px;
+}
+
+.user-commands{
+	outline: 1px solid black;
+	outline-offset: 12px;
+}
+
+.input-deposit{
+	outline: 1px solid green;
+	color: white;
+	background-color: green;
+	font-size: 20px;
+}
