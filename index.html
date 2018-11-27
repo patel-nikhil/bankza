@@ -15,13 +15,14 @@
 				<p class="sub-title text-center align-self-end">Please swipe card or touch to input account number</p>
 			</div> -->
 
-<!-- 			<div class="col-6 account-entry-screen text-center">
+<!-- 			<div class="col-5 account-entry-screen text-center">
+				<h1 class="back-button"><i class="fas fa-arrow-alt-circle-left"></i></h1>
 				<p class="sub-title-light">Please enter account number</p>
 				<div class="card">
 					<div class="card-body">
 						<div class="account-entry">
-							<input type="password" class="pin-input text-center" maxlength="7" name="" readonly>
-							<button class="pin-clear" type="submit"><i class='far fa-times-circle'></i></button>
+							<input type="password" class="pin-input text-center" readonly>
+							<button class="pin-clear"><i class='far fa-times-circle'></i></button>
 						</div>
 						<br>
 						<button class="pin-button pin-num">1</button>
@@ -44,7 +45,8 @@
 				</div>	
 			</div> -->
 
-<!-- 			<div class="col-6 pin-pad-screen text-center">
+<!-- 			<div class="col-5 pin-pad-screen text-center">
+				<h1 class="back-button"><i class="fas fa-arrow-alt-circle-left"></i></h1>
 				<p class="sub-title-light">Please enter PIN</p>
 				<div class="card">
 					<div class="card-body">
@@ -74,7 +76,7 @@
 			</div> -->
 
 <!-- 			<div class="col-6 align-self-start h-100 main-menu-screen text-white text-center p-5">
-				<h1>Welcome Adam Geneva!</h1>
+				<h1 class="">Welcome Adam Geneva!</h1>
 				<div class="p-5 mt-5 current-balance">
 					<h4>Current Balance</h4>
 					<h1 class="balance-title">$1456.25</h1>
@@ -89,10 +91,15 @@
 				<button class="menu-button"><i class="fas fa-times-circle"></i> Exit</button>
 			</div> -->
 
-			<div class="col-12 align-self-start h-100 withdraw-screen text-white text-center p-5">
+<!-- 			<div class="col-12 align-self-start h-100 withdraw-screen text-white text-center p-5">
 				<h1 class="withdraw-title">Withdraw</h1>
-				<div class="row mt-3">
+				<div class="row mt-4">
 					<div class="col-6 withdraw-section">
+						<select class="account-selection">
+							<option>Select Account</option>
+							<option>Chequing - $140.22</option>
+							<option>Savings - $14456.29</option>
+						</select>
 						<div class="p-5 m-5 current-balance">
 							<h4>Current Balance</h4>
 							<h1 class="balance-title">$143.25</h1>
@@ -113,7 +120,51 @@
 						<button class="menu-button withdraw-amount-button">$400</button>
 					</div>
 				</div>
+			</div> -->
+
+			<div class="col-6 h-100 bill-select-screen text-white">
+					<div class="col-12 pl-0">
+						<div class="bill-modify">
+							<img class="bill-img" src="5-dollar.jpg">
+							<button class="modify-button"><i class="fas fa-minus"></i></button>
+							<p class="bill-text">0</p>
+							<button class="modify-button"><i class="fas fa-plus"></i></button>
+						</div>
+						<div class="bill-modify">
+							<img class="bill-img" src="10-dollar.jpg">
+							<button class="modify-button"><i class="fas fa-minus"></i></button>
+							<p class="bill-text">0</p>
+							<button class="modify-button"><i class="fas fa-plus"></i></button>
+						</div>
+						<div class="bill-modify">
+							<img class="bill-img" src="20-dollar.png">
+							<button class="modify-button"><i class="fas fa-minus"></i></button>
+							<p class="bill-text">5</p>
+							<button class="modify-button"><i class="fas fa-plus"></i></button>
+						</div>
+						<div class="bill-modify">
+							<img class="bill-img" src="50-dollar.png">
+							<button class="modify-button"><i class="fas fa-minus"></i></button>
+							<p class="bill-text">0</p>
+							<button class="modify-button"><i class="fas fa-plus"></i></button>
+						</div>
+						<div class="bill-modify">
+							<img class="bill-img" src="100-dollar.png">
+							<button class="modify-button"><i class="fas fa-minus"></i></button>
+							<p class="bill-text">0</p>
+							<button class="modify-button"><i class="fas fa-plus"></i></button>
+						</div>
+					</div>
 			</div>
+			<div class="col-6 text-white text-center withdraw-amount-screen">
+				<h1 class="text-center">Please allocate bills</h1>
+				<div class="p-5 m-5 current-balance">
+					<h4>Withdrawal Amount</h4>
+					<h1 class="balance-title">$100.00</h1>
+				</div>
+				<button class="menu-button"><i class="fas fa-check"></i> Withdraw</button>
+			</div>
+
 		</div>
 	</div>
 </body>
