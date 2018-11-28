@@ -6,7 +6,6 @@ function initMainMenu(){
 	let totalBalance = 0;
 	activeAccount.balance.forEach(function(amount){
 		totalBalance += amount[1];
-		console.log(amount[1]);
 	});
 	
 	$(".balance-title").html("$" + totalBalance);
