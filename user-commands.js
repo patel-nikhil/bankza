@@ -1,39 +1,16 @@
-let account = 0;
 let deposited = 0;
-let activeacc = 0;
 let transactions = [];
-
-var account1 = {
-    number: "1234567890904321",
-    balance: {chequing : 100.00, savings: 50.00},
-    name: "Adam Geneva",
-    pin: "1234"
-}
-
-var account2 = {
-    number: "1234567890904322",
-    balance: {chequing : 200.00, savings: 50.00},
-    name: "Inspectah Malicious",
-    pin: "1234"
-}
-
-var accountF = {
-    number: "523456789090432",
-    balance: {chequing : 300.00, savings: 50.00},
-    name: "King Mickey",
-    pin: "1234"
-}
 
 /*
 Stores a transaction into string array for future use
  */
-function saveTransaction(transaction, amount, subaccount) {
+function saveTransaction(transaction, amount, accountType) {
     let n = transactions.length + 1;
     if (n != 1) n--;
     if (transaction == "withdraw") {
-        transactions[n] = transaction + ' ' +  "from" + ' ' + subaccount + ' ' + '-' + amount;
+        transactions[n] = transaction + ' ' +  "from" + ' ' + accountType + ' ' + '-' + amount;
     } else {
-        transactions[n] = transaction + ' ' + "to" + ' ' + subaccount + ' ' + '+' + amount;
+        transactions[n] = transaction + ' ' + "to" + ' ' + accountType + ' ' + '+' + amount;
     }
     console.log(transactions);
 }
@@ -50,8 +27,8 @@ function printReceipt(account){
     for (i = 0; i <= transactions.length; i++)
         console.log(transactions.pop());
 
-    console.log("Chequings:", account.balance.chequing);
-    console.log("Savings:", account.balance.savings);
+    console.log("Chequings:", account.balance[0][accountName]);
+    console.log("Savings:", account.balance[1][accountName]);
 }
 
 function removeTranscations(){
@@ -63,19 +40,17 @@ $(".acc1").click(function(){
     if(state == 0 || state == 1){
 
         //Set Account info
-        account = account1;
-        activeacc = 1;
-        console.log(account);
+        activeAccount = account1;
+        activeAcc = 1;
+        console.log(activeAccount);
 
         //Next Display
         $(".pin-input").val("");
         entry = "";
         if(state == 0) {
             toggleStateDisplay($(".start-screen"));
-            console.log("cool beans");
         }else{
             toggleStateDisplay($(".account-entry-screen"));
-            console.log("but why though");
         }
         setTimeout(function(){
             toggleStateDisplay($(".pin-pad-screen"));
@@ -91,19 +66,17 @@ $(".acc2").click(function(){
     if(state == 0 || state == 1){
 
         //Set Account info
-        account = account2;
-        activeacc = 2;
-        console.log(account);
+        activeAccount = account2;
+        activeAcc = 2;
+        console.log(activeAccount);
 
         //Next Display
         $(".pin-input").val("");
         entry = "";
         if(state == 0) {
             toggleStateDisplay($(".start-screen"));
-            console.log("cool beans");
         }else{
             toggleStateDisplay($(".account-entry-screen"));
-            console.log("but why though");
         }
         setTimeout(function(){
             toggleStateDisplay($(".pin-pad-screen"));
@@ -119,19 +92,17 @@ $(".accF").click(function(){
     if(state == 0 || state == 1){
 
         //Set Account info
-        account = accountF;
-        activeacc = 3;
-        console.log(account);
+        activeAccount = accountF;
+        activeAcc = 3;
+        console.log(activeAccount);
 
         //Next Display
         $(".pin-input").val("");
         entry = "";
         if(state == 0) {
             toggleStateDisplay($(".start-screen"));
-            console.log("cool beans");
         }else{
             toggleStateDisplay($(".account-entry-screen"));
-            console.log("but why though");
         }
         setTimeout(function(){
             toggleStateDisplay($(".pin-pad-screen"));
@@ -141,12 +112,6 @@ $(".accF").click(function(){
         state = 2;
     }
 });
-
-$(".input-deposit").click(function(){
-   deposited =  document.getElementById("deposit").value;
-   console.log(deposited);
-   //saveTransaction("deposit", deposited, "saving");
-})
 
 $(".receipt").click(function(){
     printReceipt(account);
