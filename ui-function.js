@@ -23,35 +23,43 @@ bankUI.click(function(){
 		state = 1;
 		toggleStateDisplay($(".start-screen"));
 		setTimeout(function(){
-			toggleStateDisplay($(".account-entry-screen"));	
+			toggleStateDisplay($(".account-entry-screen"));
 		}, 1000);
 
 	}
 });
 
+//UI CHANGES need to be made
 $(".account-enter").click(function(){
-	if(state == 1){
+	if(state == 1 && checkAccount()){
 		state = 2;
 		$(".pin-input").val("");
 		entry = "";
 		toggleStateDisplay($(".account-entry-screen"));
 		setTimeout(function(){
-			toggleStateDisplay($(".pin-pad-screen"));	
+			toggleStateDisplay($(".pin-pad-screen"));
 		}, 1000);
+	} else {
+		state == 1;
+		//instert message that account didnt match an existing
+		console.log("NOT an account");
 	}
 });
 
+//UI CHANGES need to be made
 $(".pin-enter").click(function(){
-	if(state == 2){
+	if(state == 2 && checkPin(activeAccount)){
 		state = 3;
 		toggleStateDisplay($(".pin-pad-screen"));
-		$(".balance-title").each(function(index, btn){
-			btn.innerText = activeAccount.balance[0][total]
-		});
+		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance[activeAccountType][total]});
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
 			toggleStateDisplay($(".menu-buttons-set"));
 		}, 1000);
+	} else {
+		state == 2;
+		//instert message that pin didnt match the account
+		console.log("Wrong Pin");
 	}
 });
 
@@ -133,8 +141,8 @@ $(".deposit").click(function(){
 		state = 4;
 		toggleStateDisplay($(".main-menu-screen"));
 		toggleStateDisplay($(".menu-buttons-set"));
-		document.querySelectorAll(".deposit-account")[0].innerText = "Chequings Balance $" + activeAccount.balance.chequing;
-		document.querySelectorAll(".deposit-account")[1].innerText = "Savings Balance $" + activeAccount.balance.savings;
+		$(".deposit-account")[0].innerText = "Chequings Balance $" + activeAccount.balance[activeAccountType][total];
+		$(".deposit-account")[1].innerText = "Savings Balance $" + activeAccount[activeAccountType][total];
 		setTimeout(function(){
 			toggleStateDisplay($(".start-deposit-screen"));
 		}, 1000);
@@ -144,7 +152,7 @@ $(".deposit").click(function(){
 $(".deposit-back").click(function(){
 	if(state == 4){
 		state = 3;
-		toggleStateDisplay($(".start-deposit-screen"));		
+		toggleStateDisplay($(".start-deposit-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
 			toggleStateDisplay($(".menu-buttons-set"));
@@ -196,7 +204,7 @@ pinNumbers.each(function(index, btn){
 	$(btn).click(function(){
 		if($(".pin-input").val().length < 4){
 			entry += (index + 1) % 10
-			$(".pin-input").val(entry);	
+			$(".pin-input").val(entry);
 		} else if ($(".pin-input").val().length < 7 && state == 1){
 			entry += (index + 1) % 10
 			$(".pin-input").val(entry);
@@ -206,7 +214,7 @@ pinNumbers.each(function(index, btn){
 
 
 $(".pin-delete").click(function(){
-		
+
 		let numArray = entry.split("");
 		numArray.pop();
 		entry = numArray.join("");
@@ -215,7 +223,7 @@ $(".pin-delete").click(function(){
 });
 
 $(".pin-clear").click(function(){
-		
+
 	entry = "";
 	$(".pin-input").val(entry);
 });
@@ -237,13 +245,13 @@ $(".deposit-finish").click(function(){
         state = 6;
 		let amount = depositAmount(activeAccountType);
  		let balance = updateAccountBalance(activeAccountType);
- 		document.getElementById("deposit-amt").innerHTML = "Successfully deposited $" + amount + " to your account.";
- 		document.getElementById("deposit-balance").innerHTML = "Your new balance is $" + balance;
-		
+ 		$("#deposit-amt").innerHTML = "Successfully deposited $" + amount + " to your account.";
+ 		$("#deposit-balance").innerHTML = "Your new balance is $" + balance;
+
 		/////
 		saveTransaction("deposit", deposited, "saving");
 		/////
-		
+
 		 document.getElementById("deposit-amt").innerHTML = "Successfully deposited $" + deposited + " to your account.";
         document.getElementById("deposit-balance").innerHTML = "Your new balance is $" + account.balance.chequing;
         toggleStateDisplay($(".deposit-screen"));
