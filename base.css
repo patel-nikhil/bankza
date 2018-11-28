@@ -60,6 +60,13 @@ body{
 	left: 250px;
 }
 
+<<<<<<< HEAD
+=======
+.bill-select-screen .back-button {
+	left: 170px;
+}
+
+>>>>>>> develop
 .back-button:active {
 	color: lightgrey;
 }

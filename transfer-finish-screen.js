@@ -1,7 +1,11 @@
 var finishTransferState = $(".transfer-finish-screen");
 
 function initTransferFinish(){
+<<<<<<< HEAD
 	$(".remaining-balance-transfer").html("New Balances: $" + activeAccount.balance[transferAcct1][1] + " & $" + activeAccount.balance[transferAcct2][1] );
+=======
+	$(".remaining-balance-transfer").html(activeAccount.balance[transferAcct1][0] + ": $" + activeAccount.balance[transferAcct1][1] + " | " + activeAccount.balance[transferAcct2][0] + ": $" + activeAccount.balance[transferAcct2][1]);
+>>>>>>> develop
 }
 
 
