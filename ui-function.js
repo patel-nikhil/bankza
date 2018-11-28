@@ -195,7 +195,9 @@ $(".deposit-account").click(function(event, btn){
 $(".deposit-continue").click(function(){
 	if(state == 6){
 		state = 3;
-		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.chequing});
+		$(".balance-title").each(function(index, btn){
+			$(btn).text(activeAccount.balance[activeAccountType][total])
+		});
 		toggleStateDisplay($(".deposit-finish-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
@@ -256,7 +258,7 @@ $(".deposit-finish").click(function(){
  		$("#deposit-balance").html("Your new balance is $" + balance);
 
 		/////
-		saveTransaction("deposit", deposited, activeAccount.balance[activeAccountType][accountName]);
+		saveTransaction("deposit", deposit, activeAccount.balance[activeAccountType][accountName]);
 		/////
 
 		toggleStateDisplay($(".deposit-screen"));
@@ -281,7 +283,6 @@ $(".deposit-finish").click(function(){
 
 $(".btn-danger").click(function(){
     if(state == 6 || state == 9){
-		state = 0;
        	removeTranscations();
 
         if(activeAcc == 1){
@@ -300,6 +301,7 @@ $(".btn-danger").click(function(){
         activeAcc = 0;
         if (state == 6) toggleStateDisplay($(".deposit-finish-screen"));
 		if (state == 9) toggleStateDisplay($(".withdraw-finish-screen"));
+		state = 0;
         setTimeout(function(){
 			toggleStateDisplay($(".start-screen"));
 		}, 1000);
@@ -308,7 +310,6 @@ $(".btn-danger").click(function(){
 
 $(".btn-secondary").click(function(){
     if(state == 6 || state == 9){
-		state = 0;
         printReceipt(activeAccount);
 
         if(activeAcc == 1){
@@ -323,10 +324,10 @@ $(".btn-secondary").click(function(){
         }else{
             console.log("No Existing Account Active");
         }
-
 		activeAcc = 0;
 		if (state == 6) toggleStateDisplay($(".deposit-finish-screen"));
 		if (state == 9) toggleStateDisplay($(".withdraw-finish-screen"));
+		state = 0;
         setTimeout(function(){
 			toggleStateDisplay($(".start-screen"));
 		}, 1000);

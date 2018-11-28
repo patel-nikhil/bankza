@@ -1,20 +1,14 @@
 var deposit;
 
 function depositAmount(){
-	if (activeAccountType == 1){
-		activeAccount.balance[0][total] += deposit; //chequing is 1
-	} else {
-		activeAccount.balance[1][total] += deposit; //savings is 2
-	}
+	console.log(activeAccount.balance[activeAccountType][total]);
+	activeAccount.balance[activeAccountType][total] += deposit; //chequing is 0, savings is 1
+	console.log("to: " + activeAccount.balance[activeAccountType][total]);
 	return deposit;
 }
 
 function updateAccountBalance(){
-	if (activeAccountType == 1){
-    return activeAccount.balance[0][total];
-  } else {
-    return activeAccount.balance[1][total];
-  }
+    return activeAccount.balance[activeAccountType][total];
 }
 
 $(".input-deposit").click(function(){
