@@ -31,6 +31,7 @@ $(".btn-start-transfer").click(function(){
 });
 
 $(".btn-exit").click(function(){
+	printReceipt(activeAccount);
 	if(mainMenuState.is(currentState)){
 		changeState(3, 0);
 	}
