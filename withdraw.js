@@ -1,3 +1,26 @@
+/*
+ * Global Variables
+ * account1
+ * billName
+ * bill_value
+ * atm_bill_count
+ * withdraw_bill_count
+ */
+
+/*
+ * Functions
+ * atmTotal : float
+ * setDefaultBills(amount) : null ? Object
+ * beginWithdraw(account, amount) : Boolean
+ * tryWithdraw(account, amount, bills) : Boolean
+ * checkAmount(account, amount) : Boolean
+ * hasBills (bills) : Boolean
+ * updateBills(amount, denom, value, change) : Boolean
+ * doWithdraw(account, amount) : None 
+ * removeBills(bills) : None
+ */
+
+
 /* Bill names */
 var denom = {
 	five: 0,
@@ -35,26 +58,24 @@ function atmTotal(){
 
 
 function populateAccounts(){
-	$(".account-selection")[0].length = 1;
-	for (i = 0; i < activeAccount.balance.length; i++)
-		$(".account-selection").append(new Option(activeAccount.balance[i][accountName] + " $" + activeAccount.balance[i][total],i));
+	
 }
 
-$(".account-selection").on(
-	{"change": function(){
-		if ($(this).val() == "Select Account") return;
-		updateAvailableAmounts($(this).val());
-		updateCurrentBalance($(this).val());
-		activeAccountType = $(this).val();
-	}
-});
+// $(".account-selection").on(
+// 	{"change": function(){
+// 		if ($(this).val() == "Select Account") return;
+// 		updateAvailableAmounts($(this).val());
+// 		updateCurrentBalance($(this).val());
+// 		activeAccountType = $(this).val();
+// 	}
+// });
 
-function updateAvailableAmounts (acct_type){
-	$(".withdraw-amount-button").each(function(index, btn){
-		if ($(this).val() > activeAccount.balance[acct_type][total]) {
-			$(this).disabled = true;
-		}
-	});
+// function updateAvailableAmounts (acct_type){
+// 	$(".withdraw-amount-button").each(function(index, btn){
+// 		if ($(this).val() > activeAccount.balance[acct_type][total]) {
+// 			$(this).disabled = true;
+// 		}
+// 	});
 
 	// if (acct_type == "1"){
 	// 	$(".withdraw-amount-button").each(function(index, btn){
@@ -84,7 +105,7 @@ function updateAvailableAmounts (acct_type){
 	// 		}
 	// 	});
 	// }
-}
+// }
 
 function updateCurrentBalance(acct_type){
 	$(".balance-title").each(function(index, btn){

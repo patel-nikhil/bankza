@@ -1,133 +1,27 @@
-let bankUI = $("#bank-ui");
 let state = 0;
 
 $(".account-entry-screen").toggle();
 $(".pin-pad-screen").toggle();
 $(".main-menu-screen").toggle();
-$(".menu-buttons-set").toggle();
 $(".withdraw-screen").toggle();
 $(".bill-select-screen").toggle();
-$(".withdraw-amount-screen").toggle();
 $(".withdraw-finish-screen").toggle();
 $(".start-deposit-screen").toggle();
 $(".deposit-screen").toggle();
 $(".deposit-finish-screen").toggle();
+$(".custom-entry-screen").toggle();
+$(".transfer-start-screen").toggle();
+$(".transfer-entry-screen").toggle();
+$(".transfer-finish-screen").toggle();
+
 
 
 function toggleStateDisplay(screen){
-	screen.fadeToggle(1000);
+	screen.fadeToggle(500);
 }
 
-bankUI.click(function(){
-	if(state == 0){
-		state = 1;
-		toggleStateDisplay($(".start-screen"));
-		setTimeout(function(){
-			toggleStateDisplay($(".account-entry-screen"));
-		}, 1000);
 
-	}
-});
 
-//UI CHANGES need to be made
-$(".account-enter").click(function(){
-	if(state == 1 && checkAccount()){
-		state = 2;
-		$(".pin-input").val("");
-		toggleStateDisplay($(".account-entry-screen"));
-		setTimeout(function(){
-			toggleStateDisplay($(".pin-pad-screen"));
-		}, 1000);
-	} else {
-		state == 1;
-		$(".pin-input").val("");
-		//instert message that account didnt match an existing
-		console.log("NOT an account");
-	}
-	entry = "";
-});
-
-//UI CHANGES need to be made
-$(".pin-enter").click(function(){
-	if(state == 2 && checkPin()){
-		state = 3;
-		$(".pin-input").val("");
-		toggleStateDisplay($(".pin-pad-screen"));
-		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance[0][total]});
-		setTimeout(function(){
-			toggleStateDisplay($(".main-menu-screen"));
-			toggleStateDisplay($(".menu-buttons-set"));
-		}, 1000);
-	} else {
-		state == 2;
-		$(".pin-input").val("");
-		//instert message that pin didnt match the account
-		console.log("Wrong Pin");
-	}
-	entry = "";
-});
-
-$(".btn-start-withdraw").click(function(){
-	if(state == 3){
-		state = 7;
-		populateAccounts();
-		toggleStateDisplay($(".withdraw-screen"));
-		setTimeout(function(){
-			toggleStateDisplay($(".main-menu-screen"));
-			toggleStateDisplay($(".menu-buttons-set"));
-		}, 1000);
-	}
-});
-
-$(".withdraw-amount-button").click(function(){
-	if(state == 7 && $(".account-selection").val() != "Select Account"){
-		state = 8;
-		withdraw_amount = $(this).val();
-		current_withdraw_amount = $(this).val();
-		updateWithdrawAmount();
-		withdraw_bill_count = setDefaultBills(withdraw_amount);
-
-		toggleStateDisplay($(".bill-select-screen"));
-		toggleStateDisplay($(".withdraw-amount-screen"));
-
-		for (i = 0; i < 5; i++){
-			let amt = withdraw_bill_count[i];
-			if (amt == null) $(".bill-text")[i].innerText = 0;
-			else $(".bill-text")[i].innerText = amt;
-		}
-
-		setTimeout(function(){
-			toggleStateDisplay($(".withdraw-screen"));
-		}, 1000);
-	}
-});
-
-$(".custom-amount-button").click(function(){
-	if(state == 7){
-		state = 8;
-		toggleStateDisplay($(".bill-select-screen"));
-		toggleStateDisplay($(".withdraw-amount-screen"));
-		setTimeout(function(){
-			toggleStateDisplay($(".withdraw-screen"));
-		}, 1000);
-	}
-});
-
-$(".withdraw-complete").click(function(){
-	if(state == 8){
-		state = 9;
-		doWithdraw(current_withdraw_amount);
-		removeBills(withdraw_bill_count);
-		saveTransaction("withdraw", current_withdraw_amount, activeAccount.balance[activeAccountType][accountName]);
-		$("#withdraw-amt").text("Successfully withdrew $" + current_withdraw_amount + " from your account.");
-		$("#withdraw-balance").text("Your new balance is $" + activeAccount.balance[activeAccountType][total] + ". Please collect your cash below");
-		toggleStateDisplay($(".withdraw-finish-screen"));
-		setTimeout(function(){
-			toggleStateDisplay($(".bill-select-screen"));
-			toggleStateDisplay($(".withdraw-amount-screen"));
-		}, 1000);
-	}
-});
 
 $(".withdraw-continue").click(function(){
 	if(state == 9){
@@ -204,37 +98,6 @@ $(".deposit-continue").click(function(){
 			toggleStateDisplay($(".menu-buttons-set"));
 		}, 1000);
 	}
-});
-
-let pinNumbers = $(".pin-num");
-let entry = "";
-
-pinNumbers.each(function(index, btn){
-	$(btn).click(function(){
-		if($(".pin-input").val().length < 4){
-			entry += (index + 1) % 10
-			$(".pin-input").val(entry);
-		} else if ($(".pin-input").val().length < 7 && state == 1){
-			entry += (index + 1) % 10
-			$(".pin-input").val(entry);
-		}
-	});
-});
-
-
-$(".pin-delete").click(function(){
-
-		let numArray = entry.split("");
-		numArray.pop();
-		entry = numArray.join("");
-
-		$(".pin-input").val(entry);
-});
-
-$(".pin-clear").click(function(){
-
-	entry = "";
-	$(".pin-input").val(entry);
 });
 
 // $(".btn-start-deposit").click(function(){
