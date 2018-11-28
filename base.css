@@ -60,6 +60,10 @@ body{
 	left: 250px;
 }
 
+.bill-select-screen .back-button {
+	left: 170px;
+}
+
 .back-button:active {
 	color: lightgrey;
 }
