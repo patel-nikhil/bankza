@@ -48,8 +48,9 @@ $(".account-enter").click(function(){
 
 //UI CHANGES need to be made
 $(".pin-enter").click(function(){
-	if(state == 2 && checkPin(activeAccount)){
+	if(state == 2 && checkPin()){
 		state = 3;
+		entry = $(".pin-input").val("");
 		toggleStateDisplay($(".pin-pad-screen"));
 		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance[0][total]});
 		setTimeout(function(){
@@ -261,19 +262,19 @@ $(".deposit-finish").click(function(){
 });
 
 ////////////////////////////////////////Karnvir return buttons//////////////////////////////////////////////////////
-$(".btn-info").click(function(){
-    if(state == 5){
-        state = 3;
-        toggleStateDisplay($(".deposit-finish-screen"));
-        setTimeout(function(){
-            toggleStateDisplay($(".main-menu-screen"));
-            toggleStateDisplay($(".menu-buttons-set"));
-        }, 1000);
-    }
-});
+// $(".btn-info").click(function(){
+//     if(state == 5){
+//         state = 3;
+//         toggleStateDisplay($(".deposit-finish-screen"));
+//         setTimeout(function(){
+//             toggleStateDisplay($(".main-menu-screen"));
+//             toggleStateDisplay($(".menu-buttons-set"));
+//         }, 1000);
+//     }
+// });
 
 $(".btn-danger").click(function(){
-    if(state == 5){
+    if(state == 6 || state == 9){
         state = 0;
 
        removeTranscations();
@@ -300,20 +301,20 @@ $(".btn-danger").click(function(){
 });
 
 $(".btn-secondary").click(function(){
-    if(state == 5){
+    if(state == 6 || state == 9){
         state = 0;
 
-        printReceipt(account);
+        printReceipt(activeAccount);
 
         if(activeacc == 1){
-            account1 = account;
-            account = 0;
+            account1 = activeAccount;
+            activeAccount = 0;
         } else if(activeacc == 2){
-            account2 = account;
-            account = 0;
+            account2 = activeAccount;
+            activeAccount = 0;
         } else if(activeacc == 3){
-            accountF = account;
-            account = 0;
+            accountF = activeAccount;
+            activeAccount = 0;
         }else{
             console.log("No Existing Account Active");
         }
