@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bankza</title>
+	<link rel="stylesheet" type="text/css" href="base.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto" rel="stylesheet">
+</head>
+<body>
+	<div id="main-display" class="container mt-5">
+		<div id="bank-ui" class="row justify-content-center align-items-center h-100">
+
+			<!-- Start Screen -->
+			<div class="col-12 start-screen h-100">
+				<h1 class="title text-center bankza-title"><i class="fas fa-piggy-bank"></i> Bankza</h1>
+				<p class="sub-title text-center">Please swipe card or touch to input account number</p>
+			</div>
+
+			<!-- Account Entry Screen -->
+			<div class="col-5 account-entry-screen text-center">
+				<h1 class="back-button"><i class="fas fa-arrow-alt-circle-left"></i></h1>
+				<p class="sub-title-light">Please enter account number</p>
+				<div class="card">
+					<div class="card-body">
+						<div class="account-entry">
+							<input type="text" class="account-input text-center" readonly>
+							<button class="pin-clear"><i class='far fa-times-circle'></i></button>
+							<p class="account-error-text hidden"><i class="fas fa-exclamation-triangle"></i> Invalid Account Number</p>
+						</div>
+						<br>
+						<button class="pin-button pin-num">1</button>
+						<button class="pin-button pin-num">2</button>
+						<button class="pin-button pin-num">3</button>
+						<br>
+						<button class="pin-button pin-num">4</button>
+						<button class="pin-button pin-num">5</button>
+						<button class="pin-button pin-num">6</button>
+						<br>
+						<button class="pin-button pin-num">7</button>
+						<button class="pin-button pin-num">8</button>
+						<button class="pin-button pin-num">9</button>
+						<br>
+						<button class="pin-button btn-danger pin-delete"><i class='fas fa-backspace'></i></button>
+						<button class="pin-button pin-num">0</button>
+						<button class="pin-button btn-success account-enter"><i class="fas fa-check"></i></button>
+						<br>
+					</div>
+				</div>
+			</div>
+
+			<!-- Pin Entry Screen -->
+			<div class="col-5 pin-pad-screen text-center">
+				<h1 class="back-button"><i class="fas fa-arrow-alt-circle-left"></i></h1>
+				<p class="sub-title-light">Please enter PIN</p>
+				<div class="card">
+					<div class="card-body">
+						<div class="account-entry">
+							<input type="password" class="pin-input text-center" maxlength="7" name="" readonly>
+							<button class="pin-clear" type="submit"><i class='far fa-times-circle'></i></button>
+							<p class="pin-error-text hidden"><i class="fas fa-exclamation-triangle"></i> Invalid PIN</p>
+						</div>
+						<br>
+						<button class="pin-button pin-num">1</button>
+						<button class="pin-button pin-num">2</button>
+						<button class="pin-button pin-num">3</button>
+						<br>
+						<button class="pin-button pin-num">4</button>
+						<button class="pin-button pin-num">5</button>
+						<button class="pin-button pin-num">6</button>
+						<br>
+						<button class="pin-button pin-num">7</button>
+						<button class="pin-button pin-num">8</button>
+						<button class="pin-button pin-num">9</button>
+						<br>
+						<button class="pin-button btn-danger pin-delete"><i class='fas fa-backspace'></i></button>
+						<button class="pin-button pin-num">0</button>
+						<button class="pin-button btn-success pin-enter"><i class="fas fa-check"></i></button>
+						<br>
+					</div>
+				</div>
+			</div>
+
+			<!-- Main Menu Screen -->
+			<div class="col-12 main-menu-screen h-100 text-white text-center">
+				<div class="row">
+					<div class="col-6 align-self-start h-100 main-menu-balance-section text-white text-center p-5">
+						<h1 class="welcome-text"></h1>
+						<div class="p-5 mt-5 current-balance">
+							<h4>Current Balance</h4>
+							<h1 class="balance-title"></h1>
+						</div>
+						<h4 class="align-self-end bankza-footer text-left"><i class="fas fa-piggy-bank"></i> Bankza</h4>
+					</div>
+					<div class="col-6 mt-3">
+						<button class="menu-button btn-start-withdraw"><i class="fas fa-sign-out-alt"></i> Withdraw</button>
+						<button class="menu-button btn-start-deposit"><i class="fas fa-sign-in-alt"></i> Deposit</button>
+						<button class="menu-button btn-start-transfer"><i class="fas fa-exchange-alt"></i> Transfer</button>
+						<button class="menu-button btn-exit"><i class="fas fa-times-circle"></i> Exit</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Withdraw Screen -->
+			<div class="col-12 align-self-start h-100 withdraw-screen text-white text-center p-5">
+				<h1 class="withdraw-title">Withdraw</h1>
+				<h1 class="back-button"><i class="fas fa-arrow-alt-circle-left"></i></h1>
+				<div class="row mt-4">
+					<div class="col-6 withdraw-section">
+						<select class="account-selection">
+							<option>Select Account</option>
+						</select>
+						<div class="p-5 m-5 current-balance">
+							<h4>Current Balance</h4>
+							<h1 class="balance-title"></h1>
+						</div>
+						<div class="mt-5">
+							<button class="menu-button custom-amount-button">Enter Custom Amount</button>
+						</div>
+					</div>
+					<div class="col-6 h-100">
+						<h2>Quick Cash</h2>
+						<button class="menu-button withdraw-amount-button" value=20>$20</button>
+						<button class="menu-button withdraw-amount-button" value=40>$40</button>
+						<button class="menu-button withdraw-amount-button" value=60>$60</button>
+						<button class="menu-button withdraw-amount-button" value=80>$80</button>
+						<button class="menu-button withdraw-amount-button" value=100>$100</button>
+						<button class="menu-button withdraw-amount-button" value=200>$200</button>
+						<button class="menu-button withdraw-amount-button" value=300>$300</button>
+						<button class="menu-button withdraw-amount-button" value=400>$400</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Custom Entry Screen -->
+			<div class="col-5 custom-entry-screen text-center">
+				<h1 class="back-button"><i class="fas fa-arrow-alt-circle-left"></i></h1>
+				<p class="sub-title-light">Enter custom amount</p>
+				<div class="card">
+					<div class="card-body">
+						<div class="account-entry">
+							<input type="text" class="custom-input text-center" readonly>
+							<button class="pin-clear"><i class='far fa-times-circle'></i></button>
+							<p class="custom-error-text hidden"><i class="fas fa-exclamation-triangle"></i> Invalid Amount (Not Enough Funds or Not Multiple of 5)</p>
+						</div>
+						<br>
+						<button class="pin-button pin-num">1</button>
+						<button class="pin-button pin-num">2</button>
+						<button class="pin-button pin-num">3</button>
+						<br>
+						<button class="pin-button pin-num">4</button>
+						<button class="pin-button pin-num">5</button>
+						<button class="pin-button pin-num">6</button>
+						<br>
+						<button class="pin-button pin-num">7</button>
+						<button class="pin-button pin-num">8</button>
+						<button class="pin-button pin-num">9</button>
+						<br>
+						<button class="pin-button btn-danger pin-delete"><i class='fas fa-backspace'></i></button>
+						<button class="pin-button pin-num">0</button>
+						<button class="pin-button btn-success custom-enter"><i class="fas fa-check"></i></button>
+						<br>
+					</div>
+				</div>	
+			</div>
+
+			<!-- Bill Allocation Screen -->
+			<div class="col-12 bill-select-screen ml-5 p-5">
+				<h1 class="back-button"><i class="fas fa-arrow-alt-circle-left"></i></h1>
+				<div class="row h-100">
+					<div class="col-6 h-100 text-white">
+						<div class="bill-modify">
+							<img class="bill-img" src="5-dollar.jpg">
+							<button class="modify-button"><i class="fas fa-minus"></i></button>
+							<p class="bill-text">0</p>
+							<button class="modify-button"><i class="fas fa-plus"></i></button>
+						</div>
+						<div class="bill-modify">
+							<img class="bill-img" src="10-dollar.jpg">
+							<button class="modify-button"><i class="fas fa-minus"></i></button>
+							<p class="bill-text">0</p>
+							<button class="modify-button"><i class="fas fa-plus"></i></button>
+						</div>
+						<div class="bill-modify">
+							<img class="bill-img" src="20-dollar.png">
+							<button class="modify-button"><i class="fas fa-minus"></i></button>
+							<p class="bill-text">0</p>
+							<button class="modify-button"><i class="fas fa-plus"></i></button>
+						</div>
+						<div class="bill-modify">
+							<img class="bill-img" src="50-dollar.png">
+							<button class="modify-button"><i class="fas fa-minus"></i></button>
+							<p class="bill-text">0</p>
+							<button class="modify-button"><i class="fas fa-plus"></i></button>
+						</div>
+						<div class="bill-modify">
+							<img class="bill-img" src="100-dollar.png">
+							<button class="modify-button"><i class="fas fa-minus"></i></button>
+							<p class="bill-text">0</p>
+							<button class="modify-button"><i class="fas fa-plus"></i></button>
+						</div>
+					</div>
+
+					<div class="col-6 text-white text-center withdraw-amount-screen">
+						<h1 class="text-center mt-5">Please allocate bills</h1>
+						<div class="p-5 m-4 current-balance text-center">
+							<h4>Current Total</h4>
+							<h1 class="balance-title current-withdraw-amount">$10.00</h1>
+
+							<h4>Original Withdrawal Amount</h4>
+							<h1 class="balance-title withdraw-amount">$100.00</h1>
+							<p class="withdraw-warning-text hidden"><i class="fas fa-exclamation-triangle"></i> Current withdraw amount differs from original amount</p>
+						</div>
+						<button class="withdraw-complete"><i class="fas fa-check"></i> Withdraw</button>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Withdraw Finish Screen -->
+			<div class="col-12 text-center withdraw-finish-screen text-white">
+				<h1 class="sub-title-light-large">Success!</h1>
+				<i class="far fa-check-circle fa-10x"></i>
+				<p class="sub-title-light">Your transaction has been completed. Please receive your money below.</p>
+				<p class="sub-title-light remaining-balance">Remaining Balance: </p>
+				<div class="withdraw-complete-buttons-set">
+					<button class="return-menu withdraw-complete-buttons"><i class="fas fa-undo"></i> Return to Menu</button>
+					<button class="finish-all-print withdraw-complete-buttons"><i class="fas fa-file-invoice-dollar"></i> Finish &amp; Print Receipt</button>
+					<button class="finish-all withdraw-complete-buttons"><i class="fas fa-check-double"></i> Finish</button>
+				</div>
+			</div>
+
+				<!-- Withdraw Finish Screen -->
+<!-- 			<div class="col-12 align-self-start withdraw-finish-screen text-white text-center">
+				<h1 class="title-light" id="withdraw-amt"></h1>
+				<h1 class="sub-title-light" id="withdraw-balance"></h1>
+				<div class="withdraw-prompt text-center">
+					<img class="withdraw-image" src="collect.jpg">
+					<h2 class="sub-title-light">Do you wish to make another transaction?</h2>
+				</div>
+				<div class="grid-container" style="display: grid; vertical-align: bottom">
+					<button class="withdraw-continue btn-info" style="grid-column: 1; grid-row: 2"><i class="fas fa-redo-alt"></i> Yes, continue</button>
+					<button class="withdraw-exit btn-danger" style="grid-column: 3; grid-row: 1"><i class="fas fa-sign-out-alt"></i> Finish</button>
+					<button class="withdraw-exit btn-secondary" style="grid-column: 3; grid-row: 2"><i class="fas fa-file-invoice-dollar"></i> Finish, print receipt</button>
+				</div>
+			</div> -->
+
+			<!-- Deposit Start Screen -->
+			<div class="col-12 align-self-start start-deposit-screen text-white text-center p-5">
+				<h1 class="back-button"><i class="fas fa-arrow-alt-circle-left"></i></h1>
+				<h1 class="withdraw-title">Deposit</h1>
+				<p class="sub-title-light">Please select the account you wish to make a deposit</p>
+				<select class="account-selection-deposit">
+					<option>Select Account</option>
+				</select>
+				<br>
+				<button class="deposit-continue">Continue <i class="fas fa-arrow-right"></i></button>
+			</div>
+
+			<!-- Deposit Screen -->
+			<div class="col-12 align-self-start deposit-screen text-white text-center">
+				<h1 class="title-light">Please deposit your money below</h1>
+				<div class="deposit-prompt text-center">
+					<img class="deposit-image" src="coins.png">
+					<img class="deposit-image deposit2" src="cash.jpg">
+				</div>
+				<button class="deposit-finish"><i class="fas fa-check"></i> Finish</button>
+			</div>
+
+			<!-- Finish Deposit Screen -->
+			<div class="col-12 text-center deposit-finish-screen text-white">
+				<h1 class="sub-title-light-large">Success!</h1>
+				<i class="far fa-check-circle fa-10x"></i>
+				<p class="sub-title-light">Your deposit has been processed.</p>
+				<p class="sub-title-light remaining-balance-deposit">Remaining Balance: </p>
+				<div class="withdraw-complete-buttons-set">
+					<button class="return-menu withdraw-complete-buttons"><i class="fas fa-undo"></i> Return to Menu</button>
+					<button class="finish-all-print withdraw-complete-buttons"><i class="fas fa-file-invoice-dollar"></i> Finish &amp; Print Receipt</button>
+					<button class="finish-all withdraw-complete-buttons"><i class="fas fa-check-double"></i> Finish</button>
+				</div>
+			</div>
+
+			<div class="col-12 text-center transfer-start-screen text-white">
+				<h1 class="back-button"><i class="fas fa-arrow-alt-circle-left"></i></h1>
+				<h1 class="withdraw-title">Transfer</h1>
+				<p class="sub-title-light">Please select the accounts you wish to make the transfer</p>
+				<select class="account-selection-transfer-1">
+					
+				</select>
+				<i class="fas fa-arrow-right m-3"></i>
+				<select class="account-selection-transfer-2">
+					
+				</select>
+				<br>
+				<button class="deposit-continue transfer-continue">Continue <i class="fas fa-arrow-right"></i></button>
+			</div>
+
+						<!-- Custom Entry Screen -->
+			<div class="col-5 transfer-entry-screen text-center">
+				<h1 class="back-button"><i class="fas fa-arrow-alt-circle-left"></i></h1>
+				<p class="sub-title-light">Enter transfer amount</p>
+				<div class="card">
+					<div class="card-body">
+						<div class="transfer-entry">
+							<input type="text" class="transfer-input text-center" readonly>
+							<button class="pin-clear"><i class='far fa-times-circle'></i></button>
+							<p class="transfer-error-text hidden"><i class="fas fa-exclamation-triangle"></i> Invalid Amount (Not enough funds)</p>
+						</div>
+						<br>
+						<button class="pin-button pin-num">1</button>
+						<button class="pin-button pin-num">2</button>
+						<button class="pin-button pin-num">3</button>
+						<br>
+						<button class="pin-button pin-num">4</button>
+						<button class="pin-button pin-num">5</button>
+						<button class="pin-button pin-num">6</button>
+						<br>
+						<button class="pin-button pin-num">7</button>
+						<button class="pin-button pin-num">8</button>
+						<button class="pin-button pin-num">9</button>
+						<br>
+						<button class="pin-button btn-danger pin-delete"><i class='fas fa-backspace'></i></button>
+						<button class="pin-button pin-num">0</button>
+						<button class="pin-button btn-success transfer-enter"><i class="fas fa-check"></i></button>
+						<br>
+					</div>
+				</div>	
+			</div>
+
+			<div class="col-12 text-center transfer-finish-screen text-white">
+				<h1 class="sub-title-light-large">Success!</h1>
+				<i class="far fa-check-circle fa-10x"></i>
+				<p class="sub-title-light">Your transfer has been processed.</p>
+				<p class="sub-title-light remaining-balance-transfer">Remaining Balance: </p>
+				<div class="withdraw-complete-buttons-set">
+					<button class="return-menu withdraw-complete-buttons"><i class="fas fa-undo"></i> Return to Menu</button>
+					<button class="finish-all-print withdraw-complete-buttons"><i class="fas fa-file-invoice-dollar"></i> Finish &amp; Print Receipt</button>
+					<button class="finish-all withdraw-complete-buttons"><i class="fas fa-check-double"></i> Finish</button>
+				</div>
+			</div>
+
+
+<!-- 			<div class="col-12 align-self-start deposit-finish-screen text-white text-center">
+				<h1 class="title-light" id="deposit-amt"></h1>
+				<h1 class="sub-title-light" id="deposit-balance"></h1>
+				<div class="deposit-prompt text-center">
+					<h2 class="sub-title-light">Do you wish to make another transaction?</h2>
+				</div>
+				<div class="grid-container" style="display: grid; vertical-align: bottom">
+					<button class="deposit-continue btn-info" style="grid-column: 1; grid-row: 2"><i class="fas fa-redo-alt"></i> Yes, continue</button>
+					<button class="deposit-exit btn-danger" style="grid-column: 3; grid-row: 1"><i class="fas fa-sign-out-alt"></i> Finish</button>
+					<button class="deposit-exit btn-secondary" style="grid-column: 3; grid-row: 2"><i class="fas fa-file-invoice-dollar"></i> Finish, print receipt</button>
+				</div>
+			</div> -->
+
+		</div>
+	</div>
+
+
+	<!-- Action Buttons -->
+	<div class="container">
+		<div class="row mt-5 user-commands">
+			<!-- <div class="col-12"> -->
+				<button class="user-actions acc" name="acc1" value="1"> Swipe Card account1 </button>
+				<button class="user-actions acc" name="acc2" value="2"> Swipe Card account2 </button>
+				<button class="user-actions acc" name="foreignAcc" value="F"> Swipe Card foreign Account </button>
+
+				<placeholder for="deposit"> Amount to Deposit </placeholder>
+				<input type="number" id="deposit" name="deposit" min="0.0" max="1000000000000000.0">
+				<button class="input-deposit" name="submit"> Deposit </button>
+				<!--<button class="user-actions receipt" name="receipt"> PRINT RECEIPT </button>-->
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script
+src="https://code.jquery.com/jquery-3.3.1.js"
+integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+crossorigin="anonymous"></script>
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script type="text/javascript" src="state-transition.js"></script>
+<script type="text/javascript" src="accounts.js"></script>
+<script type="text/javascript" src="security.js"></script>
+<script type="text/javascript" src="ui-function.js"></script>
+
+<script type="text/javascript" src="start-screen.js"></script>
+<script type="text/javascript" src="account-pin-entry-screen.js"></script>
+<script type="text/javascript" src="main-menu-screen.js"></script>
+<script type="text/javascript" src="withdraw-screen.js"></script>
+<script type="text/javascript" src="bill-selection-screen.js"></script>
+<script type="text/javascript" src="withdraw-finish-screen.js"></script>
+<script type="text/javascript" src="start-deposit-screen.js"></script>
+<script type="text/javascript" src="deposit-screen.js"></script>
+<script type="text/javascript" src="finish-deposit-screen.js"></script>
+<script type="text/javascript" src="start-transfer-screen.js"></script>
+<script type="text/javascript" src="transfer-finish-screen.js"></script>
+
+
+
+<script type="text/javascript" src="deposit.js"></script>
+<!-- <script type="text/javascript" src="withdraw.js"></script> -->
+<!-- <script type="text/javascript" src="bill-select.js"></script> -->
+<script type="text/javascript" src="user-commands.js"></script>
+
+</html>
