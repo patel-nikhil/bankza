@@ -26,11 +26,14 @@ function printReceipt(account){
     console.log("Transactions");
     transactions[0] = "Account Balances";
 
+
+    if (account == accountF) console.log("ATM Banking Fee $5")
     for (i = 0; i <= transactions.length; i++)
         console.log(transactions.pop());
     
     for (i = 0; i < account.balance.length; i++)
         console.log(account.balance[i][accountName] + ": $", account.balance[i][total]);
+    console.log("--------------------");
 }
 
 function removeTransactions(){
