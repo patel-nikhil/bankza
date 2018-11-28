@@ -1,30 +1,4 @@
-/*
- * Global Variables
- * account1
- * billName
- * bill_value
- * atm_bill_count
- * withdraw_bill_count
- */
 
-/*
- * Functions
- * atmTotal : float
- * setDefaultBills(amount) : null ? Object
- * beginWithdraw(account, amount) : Boolean
- * tryWithdraw(account, amount, bills) : Boolean
- * checkAmount(account, amount) : Boolean
- * hasBills (bills) : Boolean
- * updateBills(amount, denom, value, change) : Boolean
- * doWithdraw(account, amount) : None 
- * removeBills(bills) : None
- */
-
-var activeAccount;
-var activeAccountType;
-
-const name = 0;
-const total = 1;
 
 /* First dummy account */
 var account1 = {
@@ -216,7 +190,7 @@ function checkAmount(account, amount){
 	return true;
 }
 
-/* 
+/*
  * Check that the ATM has enough of each bill type
  * Check that the bill counts are zero or positive
  */
@@ -224,9 +198,9 @@ function hasBills (bills){
 	Object.values(bills).forEach(function(item, index, array){
 		if (item < 0) return false;
 	});
-	if (bills[denom.five] > atm_bill_count[denom.five] || bills[denom.ten] > atm_bill_count[denom.ten] || 
-		bills[denom.twenty] > atm_bill_count[denom.twenty] || bills[denom.fifty] > atm_bill_count[denom.fifty] || 
-		bills[denom.hundred] > atm_bill_count[denom.hundred]) return false;	
+	if (bills[denom.five] > atm_bill_count[denom.five] || bills[denom.ten] > atm_bill_count[denom.ten] ||
+		bills[denom.twenty] > atm_bill_count[denom.twenty] || bills[denom.fifty] > atm_bill_count[denom.fifty] ||
+		bills[denom.hundred] > atm_bill_count[denom.hundred]) return false;
 	return true;
 }
 
@@ -243,7 +217,7 @@ function removeBills(bills){
 	atm_bill_count[denom.fifty] -= bills[denom.fifty];
 	atm_bill_count[denom.hundred] -= bills[denom.hundred];
 }
-
-let withdraw_amount = 100.00;
-let current_withdraw_amount = 100.00;
-activeAccount = account1;
+// 
+// let withdraw_amount = 100.00;
+// let current_withdraw_amount = 100.00;
+// activeAccount = account1;

@@ -34,7 +34,7 @@ $(".account-enter").click(function(){
 	if(state == 1 && checkAccount()){
 		state = 2;
 		$(".pin-input").val("");
-		entry = "";
+		entry = $(".pin-input").val("");
 		toggleStateDisplay($(".account-entry-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".pin-pad-screen"));
@@ -51,7 +51,7 @@ $(".pin-enter").click(function(){
 	if(state == 2 && checkPin(activeAccount)){
 		state = 3;
 		toggleStateDisplay($(".pin-pad-screen"));
-		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance[activeAccountType][total]});
+		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance[0][total]});
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
 			toggleStateDisplay($(".menu-buttons-set"));
@@ -141,8 +141,8 @@ $(".deposit").click(function(){
 		state = 4;
 		toggleStateDisplay($(".main-menu-screen"));
 		toggleStateDisplay($(".menu-buttons-set"));
-		$(".deposit-account")[0].innerText = "Chequings Balance $" + activeAccount.balance[activeAccountType][total];
-		$(".deposit-account")[1].innerText = "Savings Balance $" + activeAccount[activeAccountType][total];
+		$(".deposit-account")[0].innerText = "Chequings Balance $" + activeAccount.balance[0][total];
+		$(".deposit-account")[1].innerText = "Savings Balance $" + activeAccount.balance[1][total];
 		setTimeout(function(){
 			toggleStateDisplay($(".start-deposit-screen"));
 		}, 1000);
@@ -252,10 +252,8 @@ $(".deposit-finish").click(function(){
 		saveTransaction("deposit", deposited, "saving");
 		/////
 
-		 document.getElementById("deposit-amt").innerHTML = "Successfully deposited $" + deposited + " to your account.";
-        document.getElementById("deposit-balance").innerHTML = "Your new balance is $" + account.balance.chequing;
-        toggleStateDisplay($(".deposit-screen"));
-        setTimeout(function(){
+		toggleStateDisplay($(".deposit-screen"));
+      setTimeout(function(){
             toggleStateDisplay($(".deposit-finish-screen"));
         }, 1000);
         deposited = 0;

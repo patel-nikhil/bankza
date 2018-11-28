@@ -44,7 +44,7 @@ function update_withdraw_buttons(){
     $(".bill-text").each(function(index, btn){
         btn.innerText = withdraw_bill_count[Object.values(denom)[index]];
     });
-    
+
     if (current_withdraw_amount < withdraw_amount){
         document.querySelector(".compare-total").innerText = "Warning: Current total less than original amount";
         document.querySelector(".compare-total").style.color = "red";

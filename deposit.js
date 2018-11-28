@@ -9,7 +9,7 @@ function depositAmount(acct_type){
 }
 
 function updateAccountBalance(acct_type){
-	if (acct_type == 1){
+	if (acct_type == 2){
     return activeAccount.balance[acct_type][total];
   } else {
     return activeAccount.balance[acct_type][total];
