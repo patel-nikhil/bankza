@@ -18,16 +18,22 @@ function saveTransaction(transaction, amount, accountType) {
 Return account name, transactions completed, account balance
  */
 function printReceipt(account){
-    console.log(account.name);
-    console.log(account.number);
-
+    let today = new Date();
+    console.log("Cardholder: " + account.name);
+    console.log("Card number: ************" + account.number.substr(12));
+    console.log(today);
+    console.log("");
+    console.log("Transactions");
     transactions[0] = "Account Balances";
 
+
+    if (account == accountF) console.log("ATM Banking Fee $5")
     for (i = 0; i <= transactions.length; i++)
         console.log(transactions.pop());
-
+    
     for (i = 0; i < account.balance.length; i++)
         console.log(account.balance[i][accountName] + ": $", account.balance[i][total]);
+    console.log("--------------------");
 }
 
 function removeTransactions(){
@@ -89,8 +95,8 @@ $(".acc").each(function(index, btn){
 //     }
 // });
 
-$(".receipt").click(function(){
-    if (activeAccount == 0) return;
-    printReceipt(activeAccount);
-    removeTransactions();
-})
+// $(".receipt").click(function(){
+//     if (activeAccount == 0) return;
+//     printReceipt(activeAccount);
+//     removeTransactions();
+// })

@@ -12,6 +12,7 @@ $(".transfer-finish-screen .return-menu").click(function(){
 });
 
 $(".transfer-finish-screen .finish-all-print").click(function(){
+	printReceipt(activeAccount);
 	if(finishTransferState.is(currentState)){
 		changeState(13, 0);
 	}
