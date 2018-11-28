@@ -1,17 +1,22 @@
-function depositAmount(acct_type){
-	var deposit = parseFloat(document.querySelector(".input-deposit").value);
-	if (acct_type == 2){
-		activeAccount.balance[acct_type][total] += deposit;
+var deposit;
+
+function depositAmount(){
+	if (activeAccountType == 1){
+		activeAccount.balance[0][total] += deposit; //chequing is 1
 	} else {
-		activeAccount.balance[acct_type][total] += deposit;
+		activeAccount.balance[1][total] += deposit; //savings is 2
 	}
 	return deposit;
 }
 
-function updateAccountBalance(acct_type){
-	if (acct_type == 2){
-    return activeAccount.balance[acct_type][total];
+function updateAccountBalance(){
+	if (activeAccountType == 1){
+    return activeAccount.balance[0][total];
   } else {
-    return activeAccount.balance[acct_type][total];
+    return activeAccount.balance[1][total];
   }
 }
+
+$(".input-deposit").click(function(){
+	deposit = parseFloat($("#deposit").val());
+})

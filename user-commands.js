@@ -92,7 +92,7 @@ $(".accF").click(function(){
     if(state == 0 || state == 1){
 
         //Set Account info
-        activeAccount = accountF;
+        activeAccount = account3;
         activeAcc = 3;
         console.log(activeAccount);
 
@@ -114,6 +114,5 @@ $(".accF").click(function(){
 });
 
 $(".receipt").click(function(){
-    printReceipt(account);
+    printReceipt(activeAccount);
 })
-
