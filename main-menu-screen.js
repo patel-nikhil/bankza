@@ -31,10 +31,7 @@ $(".btn-start-transfer").click(function(){
 });
 
 $(".btn-exit").click(function(){
-<<<<<<< HEAD
-=======
 	printReceipt(activeAccount);
->>>>>>> develop
 	if(mainMenuState.is(currentState)){
 		changeState(3, 0);
 	}
