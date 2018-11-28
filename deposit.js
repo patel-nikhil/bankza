@@ -15,18 +15,6 @@
 // }
 // return false;
 // }
-var activeAccount;
-var activeAccountType = 1;
-
-/* First dummy account */
-var account1 = {
-	number: "1234567890904321",
-	balance: {chequing: 100.51, savings: 50.00},
-	name: "Adam Geneva",
-	pin: "1234"
-}
-
-activeAccount = account1;
 
 function depositAmount(acct_type){
 	var deposit = parseFloat(document.querySelector(".input-deposit").value);
