@@ -34,23 +34,24 @@ $(".account-enter").click(function(){
 	if(state == 1 && checkAccount()){
 		state = 2;
 		$(".pin-input").val("");
-		entry = $(".pin-input").val("");
 		toggleStateDisplay($(".account-entry-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".pin-pad-screen"));
 		}, 1000);
 	} else {
 		state == 1;
+		$(".pin-input").val("");
 		//instert message that account didnt match an existing
 		console.log("NOT an account");
 	}
+	entry = "";
 });
 
 //UI CHANGES need to be made
 $(".pin-enter").click(function(){
 	if(state == 2 && checkPin()){
 		state = 3;
-		entry = $(".pin-input").val("");
+		$(".pin-input").val("");
 		toggleStateDisplay($(".pin-pad-screen"));
 		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance[0][total]});
 		setTimeout(function(){
@@ -59,16 +60,18 @@ $(".pin-enter").click(function(){
 		}, 1000);
 	} else {
 		state == 2;
+		$(".pin-input").val("");
 		//instert message that pin didnt match the account
 		console.log("Wrong Pin");
 	}
+	entry = "";
 });
 
 $(".btn-start-withdraw").click(function(){
 	if(state == 3){
 		state = 7;
-		toggleStateDisplay($(".withdraw-screen"));
 		populateAccounts();
+		toggleStateDisplay($(".withdraw-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
 			toggleStateDisplay($(".menu-buttons-set"));
@@ -115,6 +118,7 @@ $(".withdraw-complete").click(function(){
 		state = 9;
 		doWithdraw(current_withdraw_amount);
 		removeBills(withdraw_bill_count);
+		saveTransaction("withdraw", current_withdraw_amount, activeAccount.balance[activeAccountType][accountName]);
 		$("#withdraw-amt").text("Successfully withdrew $" + current_withdraw_amount + " from your account.");
 		$("#withdraw-balance").text("Your new balance is $" + activeAccount.balance[activeAccountType][total] + ". Please collect your cash below");
 		toggleStateDisplay($(".withdraw-finish-screen"));
@@ -128,7 +132,9 @@ $(".withdraw-complete").click(function(){
 $(".withdraw-continue").click(function(){
 	if(state == 9){
 		state = 3;
-		$(".balance-title")[0].innerText = activeAccount.balance[activeAccountType][total];
+		$(".balance-title").each(function(index, btn){
+			$(btn).text(activeAccount.balance[activeAccountType][total])
+		});
 		toggleStateDisplay($(".withdraw-finish-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
@@ -250,7 +256,7 @@ $(".deposit-finish").click(function(){
  		$("#deposit-balance").innerHTML = "Your new balance is $" + balance;
 
 		/////
-		saveTransaction("deposit", deposited, "saving");
+		saveTransaction("deposit", deposited, activeAccount.balance[activeAccountType][accountName]);
 		/////
 
 		toggleStateDisplay($(".deposit-screen"));
@@ -275,54 +281,54 @@ $(".deposit-finish").click(function(){
 
 $(".btn-danger").click(function(){
     if(state == 6 || state == 9){
-        state = 0;
+		state = 0;
+       	removeTranscations();
 
-       removeTranscations();
-
-        if(activeacc == 1){
-            account1 = account;
+        if(activeAcc == 1){
+            account1 = activeAccount;
             account = 0;
-        } else if(activeacc == 2){
-            account2 = account;
+        } else if(activeAcc == 2){
+            account2 = activeAccount;
             account = 0;
-        } else if(activeacc == 3){
-            accountF = account;
+        } else if(activeAcc == 3){
+            account3 = activeAccount;
             account = 0;
         }else{
             console.log("No Existing Account Active");
         }
 
-        activeacc = 0;
-        toggleStateDisplay($(".deposit-finish-screen"));
+        activeAcc = 0;
+        if (state == 6) toggleStateDisplay($(".deposit-finish-screen"));
+		if (state == 9) toggleStateDisplay($(".withdraw-finish-screen"));
         setTimeout(function(){
-            toggleStateDisplay($(".start-screen"));
-        }, 1000);
+			toggleStateDisplay($(".start-screen"));
+		}, 1000);
     }
 });
 
 $(".btn-secondary").click(function(){
     if(state == 6 || state == 9){
-        state = 0;
-
+		state = 0;
         printReceipt(activeAccount);
 
-        if(activeacc == 1){
+        if(activeAcc == 1){
             account1 = activeAccount;
             activeAccount = 0;
-        } else if(activeacc == 2){
+        } else if(activeAcc == 2){
             account2 = activeAccount;
             activeAccount = 0;
-        } else if(activeacc == 3){
-            accountF = activeAccount;
+        } else if(activeAcc == 3){
+            account3 = activeAccount;
             activeAccount = 0;
         }else{
             console.log("No Existing Account Active");
         }
 
-        activeacc = 0;
-        toggleStateDisplay($(".deposit-finish-screen"));
+		activeAcc = 0;
+		if (state == 6) toggleStateDisplay($(".deposit-finish-screen"));
+		if (state == 9) toggleStateDisplay($(".withdraw-finish-screen"));
         setTimeout(function(){
-            toggleStateDisplay($(".start-screen"));
-        }, 1000);
+			toggleStateDisplay($(".start-screen"));
+		}, 1000);
     }
 });

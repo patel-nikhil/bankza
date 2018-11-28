@@ -1,13 +1,3 @@
-
-
-/* First dummy account */
-var account1 = {
-	number: "1234567890904321",
-	balance: [["Chequing", 100.51], ["Savings", 50.00]],
-	name: "Adam Geneva",
-	pin: "1234"
-}
-
 /* Bill names */
 var denom = {
 	five: 0,
@@ -26,6 +16,8 @@ var atm_bill_count = [100, 100, 100, 100, 100];
 /* State variable storing bills to be withdrawn */
 var withdraw_bill_count = [0, 0, 0, 0, 0];
 
+var withdraw_amount, current_withdraw_amount;
+
 function billTotal(bills){
 	let amt = 0;
 	for (i = 0; i < bills.length; i++){
@@ -43,8 +35,9 @@ function atmTotal(){
 
 
 function populateAccounts(){
+	$(".account-selection")[0].length = 1;
 	for (i = 0; i < activeAccount.balance.length; i++)
-		$(".account-selection").append(new Option(activeAccount.balance[i][name] + " $" + activeAccount.balance[i][total],i))
+		$(".account-selection").append(new Option(activeAccount.balance[i][accountName] + " $" + activeAccount.balance[i][total],i));
 }
 
 $(".account-selection").on(

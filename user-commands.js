@@ -8,9 +8,9 @@ function saveTransaction(transaction, amount, accountType) {
     let n = transactions.length + 1;
     if (n != 1) n--;
     if (transaction == "withdraw") {
-        transactions[n] = transaction + ' ' +  "from" + ' ' + accountType + ' ' + '-' + amount;
+        transactions[n] = transaction + ' ' +  "from" + ' ' + accountType + ' ' + ': $' + amount;
     } else {
-        transactions[n] = transaction + ' ' + "to" + ' ' + accountType + ' ' + '+' + amount;
+        transactions[n] = transaction + ' ' + "to" + ' ' + accountType + ' ' + ': $' + amount;
     }
     console.log(transactions);
 }
@@ -27,8 +27,8 @@ function printReceipt(account){
     for (i = 0; i <= transactions.length; i++)
         console.log(transactions.pop());
 
-    console.log("Chequings:", account.balance[0][accountName]);
-    console.log("Savings:", account.balance[1][accountName]);
+    console.log("Chequings:", account.balance[0][total]);
+    console.log("Savings:", account.balance[1][total]);
 }
 
 function removeTranscations(){
