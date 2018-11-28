@@ -68,6 +68,12 @@ $(".withdraw-amount-button").click(function(){
 	}
 });
 
+$(".withdraw-screen .back-button").click(function(){
+	if(withdrawState.is(currentState)){
+		changeState(4, 3);
+	}
+});
+
 $(".custom-amount-button").click(function(){
 	if(withdrawState.is(currentState)){
 		changeState(4, 11);

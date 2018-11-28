@@ -55,3 +55,13 @@ $(".transfer-continue").click(function(){
 		changeState(10, 12);
 	}
 });
+
+$(".transfer-start-screen .back-button").click(function(){
+	if(startTransferState.is(currentState)){
+		changeState(10, 3);
+	}
+});
+
+
+
+

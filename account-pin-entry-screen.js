@@ -166,7 +166,7 @@ $(".back-button").click(function(){
 	}else if(pinEntryState.is(currentState)){
 		changeState(2, 0);
 	}else if(customEntryState.is(currentState)){
-		changeState(11, 5);
+		changeState(11, 4);
 	}else if(transferEntryState.is(currentState)){
 		changeState(12, 10);
 	}

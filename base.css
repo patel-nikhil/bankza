@@ -55,9 +55,9 @@ body{
 .back-button{
 	color: white;
 	font-size: 50px;
-	position: absolute;
-	top: -40px;
-	left: -300px;
+	position: fixed;
+	top: 60px;
+	left: 170px;
 }
 
 .back-button:active {

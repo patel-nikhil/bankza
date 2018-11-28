@@ -33,3 +33,9 @@ $(".deposit-continue").click(function(){
 		changeState(7, 8);	
 	}
 });
+
+$(".start-deposit-screen .back-button").click(function(){
+	if(depositStartState.is(currentState)){
+		changeState(7, 3);	
+	}
+});

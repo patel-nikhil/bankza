@@ -266,3 +266,9 @@ $(".withdraw-complete").click(function(index, btn){
 		changeState(5, 6);
 	}
 });
+
+$(".bill-select-screen .back-button").click(function(index, btn){
+	if(billSelectState.is(currentState)){
+		changeState(5, 4);
+	}
+});
