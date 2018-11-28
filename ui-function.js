@@ -45,7 +45,9 @@ $(".pin-enter").click(function(){
 	if(state == 2){
 		state = 3;
 		toggleStateDisplay($(".pin-pad-screen"));
-		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.chequing});
+		$(".balance-title").each(function(index, btn){
+			btn.innerText = activeAccount.balance[0][total]
+		});
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
 			toggleStateDisplay($(".menu-buttons-set"));
@@ -66,26 +68,22 @@ $(".btn-start-withdraw").click(function(){
 });
 
 $(".withdraw-amount-button").click(function(){
-	if(state == 7 && document.querySelector(".account-selection").value != "Select Account"){
+	if(state == 7 && $(".account-selection").val() != "Select Account"){
 		state = 8;
-		withdraw_amount = this.innerHTML.substr(1);
-		current_withdraw_amount = this.innerHTML.substr(1);
+		withdraw_amount = $(this).val();
+		current_withdraw_amount = $(this).val();
 		updateWithdrawAmount();
-		var bills = setDefaultBills(withdraw_amount);
+		withdraw_bill_count = setDefaultBills(withdraw_amount);
 
-		for (i = 0; i < 5; i++){
-			if (bills[Object.values(billName)[i]] == null) withdraw_bill_count[Object.values(billName)[i]] = 0;
-			else withdraw_bill_count[Object.values(billName)[i]] = bills[Object.values(billName)[i]];
-		}
-
-		for (i = 0; i < 5; i++){
-			let amt = bills[Object.values(billName)[i]];
-			if (amt == null) document.querySelectorAll(".bill-modify")[i].children[2].innerText = 0;
-			else document.querySelectorAll(".bill-modify")[i].children[2].innerText = amt;
-		}
-		update_withdraw_buttons();
 		toggleStateDisplay($(".bill-select-screen"));
 		toggleStateDisplay($(".withdraw-amount-screen"));
+
+		for (i = 0; i < 5; i++){
+			let amt = withdraw_bill_count[i];
+			if (amt == null) $(".bill-text")[i].innerText = 0;
+			else $(".bill-text")[i].innerText = amt;
+		}
+
 		setTimeout(function(){
 			toggleStateDisplay($(".withdraw-screen"));
 		}, 1000);
@@ -106,13 +104,10 @@ $(".custom-amount-button").click(function(){
 $(".withdraw-complete").click(function(){
 	if(state == 8){
 		state = 9;
-		doWithdraw(activeAccount, activeAccountType, current_withdraw_amount);
+		doWithdraw(current_withdraw_amount);
 		removeBills(withdraw_bill_count);
-		var balance = 0;
-		if (activeAccountType == 1) balance = activeAccount.balance.chequing;
-		else balance = activeAccount.balance.savings;
-		document.getElementById("withdraw-amt").innerHTML = "Successfully withdrew $" + current_withdraw_amount + " from your account.";
-		document.getElementById("withdraw-balance").innerHTML = "Your new balance is $" + balance + ". Please collect your cash below";
+		$("#withdraw-amt").text("Successfully withdrew $" + current_withdraw_amount + " from your account.");
+		$("#withdraw-balance").text("Your new balance is $" + activeAccount.balance[activeAccountType][total] + ". Please collect your cash below");
 		toggleStateDisplay($(".withdraw-finish-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".bill-select-screen"));
@@ -124,7 +119,7 @@ $(".withdraw-complete").click(function(){
 $(".withdraw-continue").click(function(){
 	if(state == 9){
 		state = 3;
-		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.chequing});
+		$(".balance-title")[0].innerText = activeAccount.balance[activeAccountType][total];
 		toggleStateDisplay($(".withdraw-finish-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
