@@ -13,4 +13,5 @@ function updateAccountBalance(){
 
 $(".input-deposit").click(function(){
 	deposit = parseFloat($("#deposit").val());
+	if (isNaN(deposit) || deposit < 0) deposit = -1;
 })

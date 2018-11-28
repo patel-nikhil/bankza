@@ -251,21 +251,23 @@ $(".pin-clear").click(function(){
 // Needs to track which account is accepting the money and pass that to saveTransaction for receipt printing
 $(".deposit-finish").click(function(){
     if(state == 5){
-        state = 6;
-		let amount = depositAmount();
- 		let balance = updateAccountBalance();
- 		$("#deposit-amt").html("Successfully deposited $" + amount + " to your account.");
- 		$("#deposit-balance").html("Your new balance is $" + balance);
-
-		/////
-		saveTransaction("deposit", deposit, activeAccount.balance[activeAccountType][accountName]);
-		/////
-
+		state = 6;
+		if (deposit <= 0) {
+			$("#deposit-amt").html("No funds were inserted to be deposited.");
+			$("#deposit-balance").html("Your balance is still $" + updateAccountBalance());
+			//return;
+		} else {
+			let amount = depositAmount();
+ 			let balance = updateAccountBalance();
+ 			$("#deposit-amt").html("Successfully deposited $" + amount + " to your account.");
+ 			$("#deposit-balance").html("Your new balance is $" + balance);
+			saveTransaction("deposit", deposit, activeAccount.balance[activeAccountType][accountName]);
+		}
 		toggleStateDisplay($(".deposit-screen"));
       setTimeout(function(){
             toggleStateDisplay($(".deposit-finish-screen"));
         }, 1000);
-        deposited = 0;
+        deposit = 0;
     }
 });
 
