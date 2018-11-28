@@ -13,6 +13,7 @@ $(".deposit-finish-screen .return-menu").click(function(){
 });
 
 $(".deposit-finish-screen .finish-all-print").click(function(){
+	printReceipt(activeAccount);
 	if(finishDepositState.is(currentState)){
 		changeState(9, 0);
 	}

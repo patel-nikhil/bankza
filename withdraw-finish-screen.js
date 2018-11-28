@@ -11,6 +11,7 @@ $(".return-menu").click(function(){
 });
 
 $(".finish-all-print").click(function(){
+	printReceipt(activeAccount);
 	if(withdrawFinishState.is(currentState)){
 		changeState(6, 0);
 	}
