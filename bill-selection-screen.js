@@ -262,6 +262,7 @@ $(".withdraw-complete").click(function(){
 	if(billSelectState.is(currentState)){
 		doWithdraw(current_withdraw_amount);
 		removeBills(withdraw_bill_count);
+		saveTransaction("Withdrawal", current_withdraw_amount, activeAccount.balance[activeAccountType][accountName]);
 		changeState(5, 6);
 	}
 });

@@ -1,4 +1,4 @@
-var depositStartState = $(".deposit-start-screen");
+var depositStartState = $(".start-deposit-screen");
 
 function initStartDeposit(){
 	$(".account-selection-deposit").empty();

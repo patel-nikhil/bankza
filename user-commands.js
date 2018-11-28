@@ -27,91 +27,69 @@ function printReceipt(account){
     for (i = 0; i <= transactions.length; i++)
         console.log(transactions.pop());
 
-    console.log("Chequings:", account.balance[0][total]);
-    console.log("Savings:", account.balance[1][total]);
+    for (i = 0; i < account.balance.length; i++)
+        console.log(account.balance[i][accountName] + ": $", account.balance[i][total]);
 }
 
 function removeTranscations(){
     transactions = [];
 }
 
-//Log into account 1 using swipe, available on state 0 or 1
-$(".acc1").click(function(){
-    if(state == 0 || state == 1){
-
-        //Set Account info
-        activeAccount = account1;
-        activeAcc = 1;
-        console.log(activeAccount);
-
-        //Next Display
-        $(".pin-input").val("");
-        entry = "";
-        if(state == 0) {
-            toggleStateDisplay($(".start-screen"));
-        }else{
-            toggleStateDisplay($(".account-entry-screen"));
+// //Log into account using swipe, available on state 0 or 1
+$(".acc").each(function(index, btn){
+    $(btn).click(function(){
+        if(state == 0 || state == 1){
+            if (btn.value == "1"){
+                activeAccount = account1;
+                activeAcc = 1;
+            } else if (btn.value == "2"){
+                activeAccount = account2;
+                activeAcc = 2;
+            } else if (btn.value == "F"){
+                activeAccount = accountF;
+                activeAcc = 3;
+            }
+            console.log(activeAccount);
+            changeState(state, 2);
         }
-        setTimeout(function(){
-            toggleStateDisplay($(".pin-pad-screen"));
-        }, 1000);
-
-        //Set new state
-        state = 2;
-    }
+    });
 });
 
-//Log into account 2 using swipe, available on state 0 or 1
-$(".acc2").click(function(){
-    if(state == 0 || state == 1){
+// //Log into account 1 using swipe, available on state 0 or 1
+// $(".acc1").click(function(){
+//     if(state == 0 || state == 1){
 
-        //Set Account info
-        activeAccount = account2;
-        activeAcc = 2;
-        console.log(activeAccount);
+//         //Set Account info
+//         activeAccount = account1;
+//         activeAcc = 1;
+//         console.log(activeAccount);
+//         changeState(state, 2);
+//     }
+// });
 
-        //Next Display
-        $(".pin-input").val("");
-        entry = "";
-        if(state == 0) {
-            toggleStateDisplay($(".start-screen"));
-        }else{
-            toggleStateDisplay($(".account-entry-screen"));
-        }
-        setTimeout(function(){
-            toggleStateDisplay($(".pin-pad-screen"));
-        }, 1000);
+// //Log into account 2 using swipe, available on state 0 or 1
+// $(".acc2").click(function(){
+//     if(state == 0 || state == 1){
 
-        //Set new state
-        state = 2;
-    }
-});
+//         //Set Account info
+//         activeAccount = account2;
+//         activeAcc = 2;
+//         console.log(activeAccount);
+//         changeState(state, 2);
+//     }
+// });
 
-//Log into foreign using swipe, available on state 0 or 1
-$(".accF").click(function(){
-    if(state == 0 || state == 1){
+// //Log into foreign using swipe, available on state 0 or 1
+// $(".accF").click(function(){
+//     if(state == 0 || state == 1){
 
-        //Set Account info
-        activeAccount = account3;
-        activeAcc = 3;
-        console.log(activeAccount);
-
-        //Next Display
-        $(".pin-input").val("");
-        entry = "";
-        if(state == 0) {
-            toggleStateDisplay($(".start-screen"));
-        }else{
-            toggleStateDisplay($(".account-entry-screen"));
-        }
-        setTimeout(function(){
-            toggleStateDisplay($(".pin-pad-screen"));
-        }, 1000);
-
-        //Set new state
-        state = 2;
-    }
-});
+//         //Set Account info
+//         activeAccount = account3;
+//         activeAcc = 3;
+//         console.log(activeAccount);
+//         changeState(state, 2);
+//     }
+// });
 
 $(".receipt").click(function(){
     printReceipt(activeAccount);

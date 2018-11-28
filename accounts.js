@@ -1,3 +1,5 @@
+const accountName = 0;
+const total = 1;
 var activeAccount;
 var activeAccountType;
 
@@ -15,7 +17,7 @@ var account2 = {
     pin: "5678"
 }
 
-var account3 = {
+var accountF = {
     number: "523456789090432",
     balance: [["chequing", 300.00], ["savings", 50.00]],
     name: "King Mickey",

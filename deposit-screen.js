@@ -12,6 +12,8 @@ $(".deposit-finish").click(function(){
 });
 
 function makeDeposit(){
-	activeAccount.balance[activeAccountType][1] += parseFloat($("#deposit").val());	
+	let deposit = parseFloat($("#deposit").val());
+	if (isNaN(deposit) || deposit < 0) return;
+	activeAccount.balance[activeAccountType][1] += deposit;	
+	saveTransaction("Deposit", deposit, activeAccount.balance[activeAccountType][accountName]);
 }
-
