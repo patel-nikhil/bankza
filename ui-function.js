@@ -23,43 +23,35 @@ bankUI.click(function(){
 		state = 1;
 		toggleStateDisplay($(".start-screen"));
 		setTimeout(function(){
-			toggleStateDisplay($(".account-entry-screen"));
+			toggleStateDisplay($(".account-entry-screen"));	
 		}, 1000);
 
 	}
 });
 
-//UI CHANGES need to be made
 $(".account-enter").click(function(){
-	if(state == 1 && checkAccount()){
+	if(state == 1){
 		state = 2;
 		$(".pin-input").val("");
 		entry = "";
 		toggleStateDisplay($(".account-entry-screen"));
 		setTimeout(function(){
-			toggleStateDisplay($(".pin-pad-screen"));
+			toggleStateDisplay($(".pin-pad-screen"));	
 		}, 1000);
-	} else {
-		state == 1;
-		//instert message that account didnt match an existing
-		console.log("NOT an account");
 	}
 });
 
-//UI CHANGES need to be made
 $(".pin-enter").click(function(){
-	if(state == 2 && checkPin()){
+	if(state == 2){
 		state = 3;
 		toggleStateDisplay($(".pin-pad-screen"));
-		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance[0][accountName]});
+		$(".balance-title").each(function(index, btn){
+			btn.innerText = activeAccount.balance[0][total]
+		});
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
 			toggleStateDisplay($(".menu-buttons-set"));
 		}, 1000);
-	} else {
-		state == 2;
-		//instert message that pin didnt match the account
-		console.log("Wrong Pin");
 	}
 });
 
@@ -76,26 +68,22 @@ $(".btn-start-withdraw").click(function(){
 });
 
 $(".withdraw-amount-button").click(function(){
-	if(state == 7 && document.querySelector(".account-selection").value != "Select Account"){
+	if(state == 7 && $(".account-selection").val() != "Select Account"){
 		state = 8;
-		withdraw_amount = this.innerHTML.substr(1);
-		current_withdraw_amount = this.innerHTML.substr(1);
+		withdraw_amount = $(this).val();
+		current_withdraw_amount = $(this).val();
 		updateWithdrawAmount();
-		var bills = setDefaultBills(withdraw_amount);
+		withdraw_bill_count = setDefaultBills(withdraw_amount);
 
-		for (i = 0; i < 5; i++){
-			if (bills[Object.values(billName)[i]] == null) withdraw_bill_count[Object.values(billName)[i]] = 0;
-			else withdraw_bill_count[Object.values(billName)[i]] = bills[Object.values(billName)[i]];
-		}
-
-		for (i = 0; i < 5; i++){
-			let amt = bills[Object.values(billName)[i]];
-			if (amt == null) document.querySelectorAll(".bill-modify")[i].children[2].innerText = 0;
-			else document.querySelectorAll(".bill-modify")[i].children[2].innerText = amt;
-		}
-		update_withdraw_buttons();
 		toggleStateDisplay($(".bill-select-screen"));
 		toggleStateDisplay($(".withdraw-amount-screen"));
+
+		for (i = 0; i < 5; i++){
+			let amt = withdraw_bill_count[i];
+			if (amt == null) $(".bill-text")[i].innerText = 0;
+			else $(".bill-text")[i].innerText = amt;
+		}
+
 		setTimeout(function(){
 			toggleStateDisplay($(".withdraw-screen"));
 		}, 1000);
@@ -116,13 +104,10 @@ $(".custom-amount-button").click(function(){
 $(".withdraw-complete").click(function(){
 	if(state == 8){
 		state = 9;
-		doWithdraw(activeAccount, activeAccountType, current_withdraw_amount);
+		doWithdraw(current_withdraw_amount);
 		removeBills(withdraw_bill_count);
-		var balance = 0;
-		if (activeAccountType == 1) balance = activeAccount.balance.chequing;
-		else balance = activeAccount.balance.savings;
-		document.getElementById("withdraw-amt").innerHTML = "Successfully withdrew $" + current_withdraw_amount + " from your account.";
-		document.getElementById("withdraw-balance").innerHTML = "Your new balance is $" + balance + ". Please collect your cash below";
+		$("#withdraw-amt").text("Successfully withdrew $" + current_withdraw_amount + " from your account.");
+		$("#withdraw-balance").text("Your new balance is $" + activeAccount.balance[activeAccountType][total] + ". Please collect your cash below");
 		toggleStateDisplay($(".withdraw-finish-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".bill-select-screen"));
@@ -134,7 +119,7 @@ $(".withdraw-complete").click(function(){
 $(".withdraw-continue").click(function(){
 	if(state == 9){
 		state = 3;
-		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.chequing});
+		$(".balance-title")[0].innerText = activeAccount.balance[activeAccountType][total];
 		toggleStateDisplay($(".withdraw-finish-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
@@ -148,8 +133,8 @@ $(".deposit").click(function(){
 		state = 4;
 		toggleStateDisplay($(".main-menu-screen"));
 		toggleStateDisplay($(".menu-buttons-set"));
-		$(".deposit-account")[0].html("Chequings Balance $" + activeAccount.balance[0][total]);
-		$(".deposit-account")[1].html("Savings Balance $" + activeAccount.balance[1][total]);
+		document.querySelectorAll(".deposit-account")[0].innerText = "Chequings Balance $" + activeAccount.balance.chequing;
+		document.querySelectorAll(".deposit-account")[1].innerText = "Savings Balance $" + activeAccount.balance.savings;
 		setTimeout(function(){
 			toggleStateDisplay($(".start-deposit-screen"));
 		}, 1000);
@@ -159,7 +144,7 @@ $(".deposit").click(function(){
 $(".deposit-back").click(function(){
 	if(state == 4){
 		state = 3;
-		toggleStateDisplay($(".start-deposit-screen"));
+		toggleStateDisplay($(".start-deposit-screen"));		
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
 			toggleStateDisplay($(".menu-buttons-set"));
@@ -195,7 +180,7 @@ $(".deposit-account").click(function(event, btn){
 $(".deposit-continue").click(function(){
 	if(state == 6){
 		state = 3;
-		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance[0][1]});
+		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.chequing});
 		toggleStateDisplay($(".deposit-finish-screen"));
 		setTimeout(function(){
 			toggleStateDisplay($(".main-menu-screen"));
@@ -211,7 +196,7 @@ pinNumbers.each(function(index, btn){
 	$(btn).click(function(){
 		if($(".pin-input").val().length < 4){
 			entry += (index + 1) % 10
-			$(".pin-input").val(entry);
+			$(".pin-input").val(entry);	
 		} else if ($(".pin-input").val().length < 7 && state == 1){
 			entry += (index + 1) % 10
 			$(".pin-input").val(entry);
@@ -221,7 +206,7 @@ pinNumbers.each(function(index, btn){
 
 
 $(".pin-delete").click(function(){
-
+		
 		let numArray = entry.split("");
 		numArray.pop();
 		entry = numArray.join("");
@@ -230,7 +215,7 @@ $(".pin-delete").click(function(){
 });
 
 $(".pin-clear").click(function(){
-
+		
 	entry = "";
 	$(".pin-input").val(entry);
 });
@@ -252,16 +237,15 @@ $(".deposit-finish").click(function(){
         state = 6;
 		let amount = depositAmount(activeAccountType);
  		let balance = updateAccountBalance(activeAccountType);
- 		$("#deposit-amt").html("Successfully deposited $" + amount + " to your account.");
-		//need to change to be dynamic right now hard coded
- 		$("#deposit-balance").html("Your new balance is $" + activeAccount.balance[0][total]);
-
+ 		document.getElementById("deposit-amt").innerHTML = "Successfully deposited $" + amount + " to your account.";
+ 		document.getElementById("deposit-balance").innerHTML = "Your new balance is $" + balance;
+		
 		/////
 		saveTransaction("deposit", deposited, "saving");
 		/////
-
-		 $("#deposit-amt").html("Successfully deposited $" + deposited + " to your account.");
-     $("#deposit-balance").html("Your new balance is $" + activeAccount.balance[0][total]);
+		
+		 document.getElementById("deposit-amt").innerHTML = "Successfully deposited $" + deposited + " to your account.";
+        document.getElementById("deposit-balance").innerHTML = "Your new balance is $" + account.balance.chequing;
         toggleStateDisplay($(".deposit-screen"));
         setTimeout(function(){
             toggleStateDisplay($(".deposit-finish-screen"));
