@@ -1,27 +1,3 @@
-/*
- * Global Variables
- * account1
- * billName
- * billValue
- * billCount
- * withdraw_bill_count
- */
-
-/*
- * Functions
- * atmTotal : float
- * setDefaultBills(amount) : null ? Object
- * beginWithdraw(account, amount) : Boolean
- * tryWithdraw(account, amount, bills) : Boolean
- * checkAmount(account, amount) : Boolean
- * hasBills (bills) : Boolean
- * updateBills(amount, denom, value, change) : Boolean
- * doWithdraw(account, amount) : None 
- * removeBills(bills) : None
- */
-
-var activeAccount;
-var activeAccountType;
 
 /* First dummy account */
 var account1 = {
@@ -118,9 +94,9 @@ function updateAvailableAmounts (acct_type){
 
 function updateCurrentBalance(acct_type){
 	if (acct_type == "2"){
-		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.savings});	
+		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.savings});
 	} else {
-		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.chequing});	
+		document.querySelectorAll(".balance-title").forEach(function(btn){btn.innerText = activeAccount.balance.chequing});
 	}
 }
 
@@ -234,7 +210,7 @@ function beginWithdraw(account, amount){
 }
 
 
-/* 
+/*
  * Perform withdraw action
  */
 function tryWithdraw(account, amount, bills){
@@ -254,7 +230,7 @@ function checkAmount(account, amount){
 	return true;
 }
 
-/* 
+/*
  * Check that the ATM has enough of each bill type
  * Check that the bill counts are zero or positive
  */
@@ -262,7 +238,7 @@ function hasBills (bills){
 	Object.values(bills).forEach(function(item, index, array){
 		if (item < 0) return false;
 	});
-	if (bills.five > billCount.five || bills.ten > billCount.ten || bills.twenty > billCount.twenty || bills.fifty > billCount.fifty || bills.hundred > billCount.hundred) return false;	
+	if (bills.five > billCount.five || bills.ten > billCount.ten || bills.twenty > billCount.twenty || bills.fifty > billCount.fifty || bills.hundred > billCount.hundred) return false;
 	return true;
 }
 
@@ -274,7 +250,7 @@ function hasBills (bills){
  * amount	- total amount being withdrawn
  * denom	- denominator of bill for which the number is being changed
  *				0 = five, 1 = ten, 2 = twenty, 3 = fifty, 4 = hundred
- * 
+ *
  * value	- number of bills by which amount is being increased/decreased
  * change	- "increase" or "decrease"
  *
@@ -288,19 +264,19 @@ function hasBills (bills){
 // function updateBills(amount, denom, value, change){
 // 	if (billCount[denom] < value) return false; 										/* Not enough bills, don't allow to increase */
 // 	if (value > Math.floor(amount / Object.values(billValue)[denom])) return false; 	/* Goes higher than withdrawal amount */
-	
+
 // 	var new_amts = [0, 0, 0, 0, 0];
 // 	for (i = 0; i < 5; i++) new_amts[i] = Object.values(withdraw_bill_count)[i];
-	
+
 // 	console.log("Passed initial checks");
-	
+
 // 	/*if (change == "decrease"){*/
 // 	if (change == "decrease"){
 // 		new_amts[denom] -= value;
 // 	} else if (change == "increase"){
 // 		new_amts[denom] += value;
 // 	}
-	
+
 // 	/* Try and reallocate all other bill values */
 // 	/* amt_change = Object.values(billValue)[denom] */
 // 	amt_change = Object.values(billValue)[denom] * value;
@@ -311,16 +287,16 @@ function hasBills (bills){
 // 		if (Object.values(billCount)[i] <= Object.values(withdraw_bill_count)[i]) continue;	/* Used up all of these bills so go to next highest denomination */
 // 		var denomAmt = Math.floor(amt_change / Object.values(billValue)[i]);
 // 		if (denomAmt == 0) continue;
-		
+
 // 		/* Use as many of these bill types as you can */
 // 		if (denomAmt > Object.values(billCount)[i] - Object.values(withdraw_bill_count)[i]){
 // 			denomAmt = Object.values(billCount)[i] - Object.values(withdraw_bill_count)[i];
 // 		}
-		
+
 // 		if (change == "decrease"){
 // 			new_amts[i] += denomAmt;
 // 		} else if (change == "increase"){
-// 			if (new_amts[i] - denomAmt < 0) continue; 
+// 			if (new_amts[i] - denomAmt < 0) continue;
 // 			new_amts[i] -= denomAmt;
 // 		}
 // 		/*new_amts[i] = denomAmt;*/
@@ -352,9 +328,9 @@ function removeBills(bills){
 	billCount.hundred -= bills.hundred;
 }
 
-let withdraw_amount = 100.00;
-let current_withdraw_amount = 100.00;
-activeAccount = account1;
+// let withdraw_amount = 100.00;
+// let current_withdraw_amount = 100.00;
+// activeAccount = account1;
 // document.getElementById("balance").value = "$" + account1.balance;
 // beginWithdraw(account1, 50.00);
 // console.log("New balance is " + account1.balance);
