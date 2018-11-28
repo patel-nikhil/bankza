@@ -17,7 +17,7 @@ function initWithdrawButtons(){
 	$(".custom-amount-button").addClass("disable");
 	$(".custom-amount-button").attr("disabled", true);
 
-	$(".balance-title").html("-");
+	$(".withdraw-screen .balance-title").html("-");
 }
 
 $(".account-selection").change(function(){
