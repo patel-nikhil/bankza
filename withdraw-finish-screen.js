@@ -17,6 +17,7 @@ $(".finish-all-print").click(function(){
 });
 
 $(".finish-all").click(function(){
+	removeTransactions();
 	if(withdrawFinishState.is(currentState)){
 		changeState(6, 0);
 	}

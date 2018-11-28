@@ -33,7 +33,9 @@ function disableStates(){
 }
 
 function initializeState(state){
-	if(state == 1){
+	if (state == 0){
+		initStartScreen();
+	}else if(state == 1){
 		initAccountEntry();
 	}else if(state == 2){
 		initPinEntry();

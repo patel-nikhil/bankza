@@ -1,7 +1,7 @@
 const accountName = 0;
 const total = 1;
-var activeAccount;
-var activeAccountType;
+var activeAccount = 0;
+var activeAccountType = 0;
 
 var account1 = {
     number: "1",

@@ -7,12 +7,11 @@ Stores a transaction into string array for future use
 function saveTransaction(transaction, amount, accountType) {
     let n = transactions.length + 1;
     if (n != 1) n--;
-    if (transaction == "withdraw") {
+    if (transaction == "Withdrawal") {
         transactions[n] = transaction + ' ' +  "from" + ' ' + accountType + ' ' + ': $' + amount;
     } else {
         transactions[n] = transaction + ' ' + "to" + ' ' + accountType + ' ' + ': $' + amount;
     }
-    console.log(transactions);
 }
 
 /*
@@ -31,14 +30,14 @@ function printReceipt(account){
         console.log(account.balance[i][accountName] + ": $", account.balance[i][total]);
 }
 
-function removeTranscations(){
+function removeTransactions(){
     transactions = [];
 }
 
 // //Log into account using swipe, available on state 0 or 1
 $(".acc").each(function(index, btn){
     $(btn).click(function(){
-        if(state == 0 || state == 1){
+        if(currentState.is($(".start-screen")) || currentState.is(accountEntryState)){
             if (btn.value == "1"){
                 activeAccount = account1;
                 activeAcc = 1;
@@ -49,8 +48,7 @@ $(".acc").each(function(index, btn){
                 activeAccount = accountF;
                 activeAcc = 3;
             }
-            console.log(activeAccount);
-            changeState(state, 2);
+           changeState(currentState.is(accountEntryState) ? 1 : 0, 2);
         }
     });
 });
@@ -92,5 +90,7 @@ $(".acc").each(function(index, btn){
 // });
 
 $(".receipt").click(function(){
+    if (activeAccount == 0) return;
     printReceipt(activeAccount);
+    removeTransactions();
 })

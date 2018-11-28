@@ -258,7 +258,7 @@ function updateWithdrawAmount(){
     document.querySelector(".withdraw-amount").innerText = "$" + withdraw_amount;
 }
 
-$(".withdraw-complete").click(function(){
+$(".withdraw-complete").click(function(index, btn){
 	if(billSelectState.is(currentState)){
 		doWithdraw(current_withdraw_amount);
 		removeBills(withdraw_bill_count);
